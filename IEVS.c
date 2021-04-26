@@ -140,6 +140,8 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define schar signed char
 #define real double
 
+#define HUGE HUGE_VAL /* Adding bridge macro to math.h macro WGA */
+
 #define PI 3.14159265358979323844
 
 #define MaxNumCands 32
