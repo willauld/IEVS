@@ -308,7 +308,10 @@ void PrintNSpaces(int N)
 }
 /****** convenient constants: *******/
 #define BIGINT 0x7FFFFFFF
+#define MAXUINT UINT_MAX
+/*
 #define MAXUINT ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255)))
+*/
 /* defn works on 8,16,32, and 64-bit machines */
 
 uint32 BLC32x[60]; /* 32*60=1920 bits of state. Must be nonzero mod P. */
