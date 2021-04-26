@@ -5,6 +5,7 @@
 #include "stdafx.h" /*needed if Microsoft Windows OS, unwanted if LINUX; will be more of that*/
 #endif
 #include <stdio.h>
+#define NO_OLDNAMES
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -1326,7 +1327,7 @@ for 2 <= k <= n, then
 sigma = sqrt(S(n) / (n - 1))
 Attributes this method to B.P. Welford, Technometrics 4 (1962) 419-420.
 *******/
-inline void WelfordUpdateMeanSD(real NewDatum, int *Count, real *M, real *S)
+__attribute__((always_inline)) inline void WelfordUpdateMeanSD(real NewDatum, int *Count, real *M, real *S)
 {
     real OldMean;
     OldMean = *M;
@@ -7997,7 +7998,7 @@ void RWBRDriver()
 
 /*************************** MAIN CODE: ***************************/
 
-main()
+void main()
 {
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
