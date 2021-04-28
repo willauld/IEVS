@@ -1040,12 +1040,16 @@ void TestsOfRand()
 }
 
 bool IsPerm(uint N, uint Perm[])
-{ /* true if is a perm of [0..N-1] */
+{ /* true if is a permutation of [0..N-1] */
     int i;
     int ct[MaxNumCands];
     assert(N < MaxNumCands);
+    /* the following explicit range check is useful for stopping any possible
+    * attempt to access crazy memory later if Perm[] contains bogusness. */
     for (i = 0; i < (int)N; i++)
     {
+        if (Perm[i] >= N || Perm[i] < 0)
+            return FALSE;
         ct[i] = 0;
     }
     for (i = 0; i < (int)N; i++)
