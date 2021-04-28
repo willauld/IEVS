@@ -1,4 +1,3 @@
-#rm ./test01.out
 ./a.exe > ./test01.out <<!
 12345
 3
