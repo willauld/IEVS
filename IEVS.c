@@ -8,6 +8,7 @@
 #define NO_OLDNAMES
 #include <math.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <assert.h>
 #include <ctype.h>
 #include <sys/types.h>
@@ -135,8 +136,14 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define until(x) while (!(x))
 #define uint unsigned int
 #define bool char
-#define uint32 unsigned int
-#define uint64 unsigned long long
+#define uint64 uint64_t
+#define uint32 uint32_t
+#define uint16 uint16_t
+#define uint8 uint8_t
+#define int64 int64_t
+#define int32 int32_t
+#define int16 int16_t
+#define int8 int8_t
 #define uchar unsigned char
 #define schar signed char
 #define real double
