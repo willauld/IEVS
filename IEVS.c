@@ -3187,8 +3187,8 @@ EMETH SchulzeBeatpaths(edata *E /* winner = X so BeatPathStrength over rivals Y 
 }
 
 /* Note about Smith and Schwartz sets:
-BeatPathStrength[k*E->NumCands+j] > 0   for all k in the "Smith Set" and j outside it.
-BeatPathStrength[k*E->NumCands+j] >= 0  for all k in the "Schwartz Set" and j outside it.
+BeatPathStrength[k \* E->NumCands+j] > 0   for all k in the "Smith Set" and j outside it.
+BeatPathStrength[k \* E->NumCands+j] >= 0  for all k in the "Schwartz Set" and j outside it.
 *******/
 
 void beatDFS(int x, int diff, bool Set[], int Mat[], int N)
@@ -4564,9 +4564,9 @@ EMETH TidemanRankedPairs(edata *E /*lock in comparisons with largest margins not
             }
     }
     /* The above code assumes that pairels has been set properly.
-   * Tpath[*E->NumCands +] ends up with the winning row having all cells
+   * Tpath[ \* E->NumCands +] ends up with the winning row having all cells
    * set to BIGINT.  In fact, a complete ranking is given,
-   * where Tpath[i*E->NumCands +j]==BIGINT means that i is
+   * where Tpath[i \* E->NumCands +j]==BIGINT means that i is
    * ranked over j (where i!=j).   So to find the winner: ****/
     winner = -99;
     for (i = 0; i < (int)E->NumCands; i++)
