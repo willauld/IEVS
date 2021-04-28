@@ -1069,12 +1069,38 @@ void MakeIdentityPerm(uint N, uint Perm[])
     }
 }
 
-void RandomlyPermute(uint N, uint RandPerm[])
-{ /* randomly permutes RandPerm[0..N-1] */
+void OldRandomlyPermute(uint N, uint RandPerm[])
+{ /* randomly permutes RandPerm[0..N-1],. Incorrect bastardization of Fischer-Yates
+* algorithm https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
+* composes a new random N-item perm with old one, but the new perm is biased
+* to try to change every entry of the old perm, whereas a true-uniform new random one
+* would in expectation keep 1 element of old perm unaltered -- so this algorithm is
+* "overdoing it." Still a Markov chain on perms with limit distribution exactly uniform
+* so still ok, but think we ought to switch to the real Fischer-Yates alg = next routine
+* below. */
     int i, j, t;
     for (i = N - 1; i > 0; i--)
     {
         j = (int)RandInt((uint)i);
+        assert(j < i);
+        assert(0 <= j);
+        t = RandPerm[j];
+        RandPerm[j] = RandPerm[i];
+        RandPerm[i] = t;
+    }
+    assert(IsPerm(N, RandPerm));
+}
+
+void RandomlyPermute(uint N, uint RandPerm[])
+{ /* randomly permutes RandPerm[0..N-1]. Fischer-Yates algorithm
+* https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
+* composes an exactly uniform-random N-item perm with old one */
+    int i, j, t;
+    for (i = N - 1; i > 0; i--)
+    {
+        j = (int)RandInt((uint)i + 1);
+        assert(j <= i);
+        assert(0 <= j);
         t = RandPerm[j];
         RandPerm[j] = RandPerm[i];
         RandPerm[i] = t;
