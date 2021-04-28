@@ -9,3 +9,6 @@ My current to do's for this project are:
     - which is VSE(method)=1-[BR(method) / BR(Random Ballot)] 
 - Compare results with vse-sim and understand why there are differences
 - Add analysis of individual simulations what factors of goodness are being vialated? For exmample: vote splitting, latter no harm...
+
+Questions:
+- In EMETH PlurIR() looks like two separate checks for (PSecond < 0). I think we only want the second of these, verify. 
