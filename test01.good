@@ -1,0 +1,93 @@
+IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!
+Version=3.240000  Year=2007  Month=2
+
+Constants:
+sizeof(uint)=4 bytes	sizeof(uint32)=4	sizeof(uint64)=8	sizeof(real)=8
+sizeof(edata)=2261000	MaxNumCands=32	MaxNumVoters=2048	MaxNumIssues=8
+NumMethods=68	NumCoreMethods=12	TRUE=1	FALSE=0
+ArtinPrime=196549
+BROutputMode=0
+
+Please enter random seed (0 causes machine to auto-generate from TimeOfDay)
+Random generator initialized with seed=12345:
+0.837376 0.566012 0.455470 0.753659 0.665476 0.541795 0.724432 
+
+Computing sequence LCM(1,2,...N) for N=1..22:
+LCMfact[23]=0
+What do you want to do?
+1=BayesianRegrets
+2=YeePicture
+3=Test RandGen (and other self-tests)
+4=Tally an election with votes you enter
+Test of randgen & other tests
+Performing 100000 randgen calls to test that randgen[0,1] behaving ok:
+mean=0.498967(should be 1/2)  min=0.000012  max=0.999998   variance=0.0833988(should be 1/12=0.0833333)
+counts in 10 bins 0-0.1, 0.1-0.2, etc:  9959 10125 10154 10048 10025 9827 9902 9966 10064 9930
+Performing 100000 randgen calls to test that normal randgen behaving ok:
+mean=0.00101943(should be 0)  min=-4.035614  max=4.31025   variance=0.99366(should be 1)
+counts in 10 bins 0-0.1, 0.1-0.2, etc:  3973 3867 3881 3705 3617 3488 3248 3043 2793 2567
+Performing 100000 randgen calls to test that expl randgen behaving ok:
+mean=1.00149(should be 1)  min=0.000008  max=12.5051   variance=2.00308(should be 2?)
+counts in 10 bins 0-0.1, 0.1-0.2, etc:  9512 8641 7782 6955 6317 5878 5108 4687 4269 3834
+Performing 100000 randgen calls to test that radial normal randgen behaving ok:
+mean=1.25457(should be ~1.25)  min=0.005752  max=5.2133   meansq=2.0043(should be 2)
+counts in 10 bins 0-0.1, 0.1-0.2, etc:  479 1512 2351 3263 4020 4762 5262 5696 5849 5974
+Performing 100000 randgen calls to test that normal randgen behaving ok radially:
+mean=1.25355(should be ~1.25)  min=0.002484  max=4.90006   meansq=2.00019(should be 2)
+counts in 10 bins 0-0.1, 0.1-0.2, etc:  474 1482 2422 3282 4133 4627 5230 5701 5908 6015
+
+Test edata structure:
+GenNormalUtils:
+AddIgnorance:
+HonestyStrat:
+BuildDefetasMatrix:
+PrintEdata:
+NumVoters=6  NumCands=5
+Voter  0:
+Utility: -1.134-0.527 0.897-1.179-1.591
+PercUti: -1.133-0.527 0.896-1.178-1.591
+RangeScore:  0.184 0.428 1.000 0.166 0.000
+CandRank:  2 1 0 3 4
+TopDown:  2 1 0 3 4
+Approve:  0 1 1 0 0
+Approve2:  0 0 1 0 0
+Voter  1:
+Utility:  0.902-0.805-0.336-0.122 2.449
+PercUti:  0.901-0.805-0.335-0.122 2.449
+RangeScore:  0.524 0.000 0.144 0.210 1.000
+CandRank:  1 4 3 2 0
+TopDown:  4 0 3 2 1
+Approve:  1 0 0 0 1
+Approve2:  0 0 0 0 1
+Voter  2:
+Utility: -0.745 0.593 0.648 1.222 1.366
+PercUti: -0.744 0.591 0.647 1.222 1.366
+RangeScore:  0.000 0.633 0.659 0.932 1.000
+CandRank:  4 3 2 1 0
+TopDown:  4 3 2 1 0
+Approve:  0 0 1 1 1
+Approve2:  0 0 0 1 1
+Voter  3:
+Utility: -1.566 1.103-0.382-2.695 0.413
+PercUti: -1.566 1.103-0.380-2.695 0.413
+RangeScore:  0.297 1.000 0.610 0.000 0.818
+CandRank:  3 0 2 4 1
+TopDown:  1 4 2 0 3
+Approve:  0 1 1 0 1
+Approve2:  0 1 0 0 1
+Voter  4:
+Utility:  0.337-0.106 1.144 0.144 0.410
+PercUti:  0.338-0.106 1.146 0.144 0.408
+RangeScore:  0.355 0.000 1.000 0.200 0.411
+CandRank:  2 4 0 3 1
+TopDown:  2 4 0 3 1
+Approve:  0 0 1 0 1
+Approve2:  0 0 1 0 0
+Voter  5:
+Utility:  0.141 0.419-0.413 0.752 0.214
+PercUti:  0.141 0.420-0.412 0.752 0.215
+RangeScore:  0.476 0.715 0.000 1.000 0.538
+CandRank:  3 1 4 0 2
+TopDown:  3 1 4 0 2
+Approve:  0 1 0 1 0
+Approve2:  0 0 0 1 0
