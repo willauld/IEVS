@@ -1066,8 +1066,8 @@ bool IsPerm(uint N, uint Perm[])
 
 void MakeIdentityPerm(uint N, uint Perm[])
 {
-    int i;
-    for (i = 0; i < (int)N; i++)
+    uint i;
+    for (i = 0; i < N; i++)
     {
         Perm[i] = i;
     }
