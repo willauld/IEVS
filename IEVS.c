@@ -156,7 +156,7 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define MaxNumVoters 2048
 #define MaxNumIssues 8
 #define MaxScenarios 17424
-#define NumMethods 68 /*EMETH the # in this line needs to change if add new voting method*/
+#define NumMethods 69 /*EMETH the # in this line needs to change if add new voting method*/
 #define NumSlowMethods 8
 #define NumFastMethods (NumMethods - NumSlowMethods)
 #define NumUtilGens 11 /*UTGEN the # in this line needs to change if add new util gen*/
@@ -2058,6 +2058,7 @@ int WorstWinner;
 int BestWinner;
 int RandomUncoveredMemb;
 uint RangeGranul;
+int StarGranul = 6;
 int IRVTopLim = BIGINT;
 int CondorcetWinner; /*negative if does not exist*/
 int TrueCW;          /*cond winner based on undistorted true utilities; negative if does not exist*/
@@ -2067,6 +2068,8 @@ int SmithIRVwinner;
 uint PlurVoteCount[MaxNumCands];
 uint AntiPlurVoteCount[MaxNumCands];
 uint DabaghVoteCount[MaxNumCands];
+int StarNdefMatrix[MaxNumCands * MaxNumCands];
+int StarNVoteCount[MaxNumCands];
 int VFAVoteCount[MaxNumCands];
 int RdVoteCount[MaxNumCands];
 int FavListNext[MaxNumVoters];
@@ -2084,6 +2087,7 @@ uint MCAVoteCount[MaxNumCands];
 real RangeVoteCount[MaxNumCands];
 real SumNormedRating[MaxNumCands];
 uint RangeNVoteCount[MaxNumCands];
+
 real CCumVoteCount[MaxNumCands];
 real MedianRating[MaxNumCands];
 real CScoreVec[MaxNumVoters];
@@ -5014,6 +5018,55 @@ DONE:;
     return (-1); /*failure*/
 }
 
+/** Actually, the below is a stupid way to implement STAR voting.
+It uses C*C-entry workspace array and runs in order V*C*C steps, where V=#voters, C=#cnddts.  I could have implemented it to run in order V*C steps and without any C*C-entry array, only C-entry arrays, by doing an extra pass thru the votes after figure out the RangeN top-2 finishers.
+Might redo this later... and then comparing the stupid and non-stupid STARs will also serve as a validity test. ***/
+EMETH StarN(edata *E /*highest average rounded Score [rded to integer in 0..StarGranul-1] wins 1st round; 2nd round="instant runoff" simple maj vote among top two*/
+)
+{ /* side effects:   StarNdefMatrix[], StarNVoteCount[]; uses global
+integer StarGranul; official recommendation of the STAR-inventors is
+StarGranul=6  */
+    /* WDS: untested 29 april 2021 */
+    int i, j, k, x, marg, FirstRdWinner = -1, StarSecond = -1, winner = -1;
+    uint RdedScore[MaxNumCands];
+    if (E->NumCands < 2)
+        return 0;
+    assert(E->NumCands < MaxNumCands);
+    assert(StarGranul >= 2);
+    assert(StarGranul <= 10000000);
+    ZeroIntArray(E->NumCands, (int *)StarNVoteCount);
+    ZeroIntArray(SquareInt(E->NumCands), (int *)StarNdefMatrix);
+    for (i = 0; i < (int)E->NumVoters; i++)
+    {
+        x = i * E->NumCands;
+        for (j = E->NumCands - 1; j >= 0; j--)
+        {
+            RdedScore[j] = (uint)((E->Score[x + j]) * (StarGranul - 0.0000000001));
+            assert(RdedScore[j] < StarGranul); /*allowed scores 0,1,2,3,4,5 if StarGranul=6*/
+            StarNVoteCount[j] += RdedScore[j];
+        }
+        for (j = E->NumCands - 1; j >= 0; j--)
+        {
+            for (k = E->NumCands - 1; k >= 0; k--)
+            {
+                StarNdefMatrix[j * E->NumCands + k] += SignInt(RdedScore[j] - RdedScore[k]);
+            }
+        }
+    }
+    FirstRdWinner = ArgMaxUIntArr(E->NumCands, StarNVoteCount, (int *)RandCandPerm);
+    assert(0 <= FirstRdWinner);
+    assert(FirstRdWinner < E->NumCands);
+    StarSecond = Arg2MaxUIntArr(E->NumCands, StarNVoteCount, (int *)RandCandPerm, FirstRdWinner);
+    assert(0 <= StarSecond);
+    assert(StarSecond < E->NumCands);
+    assert(StarSecond != FirstRdWinner);
+    marg = StarNdefMatrix[StarSecond * E->NumCands + FirstRdWinner] - StarNdefMatrix[FirstRdWinner * E->NumCands + StarSecond];
+    winner = FirstRdWinner;
+    if (marg > 0 || (marg == 0 && RandBool()))
+        winner = StarSecond;
+    return winner;
+}
+
 /******** uber-routines which package many voting methods into one: **********/
 
 void PrintMethName(int WhichMeth, bool Padding)
@@ -5321,6 +5374,11 @@ void PrintMethName(int WhichMeth, bool Padding)
         if (Padding)
             PrintNSpaces(9);
         break;
+    case (60):
+        printf("StarN");
+        if (Padding)
+            PrintNSpaces(10);
+        break;
         /****** below methods are "Slow": *****/
     case (NumFastMethods + 0):
         printf("TidemanRankedPairs");
@@ -5570,6 +5628,9 @@ int GimmeWinner(edata *E, int WhichMeth)
         break;
     case (59):
         w = UncAAO(E);
+        break;
+    case (60):
+        w = StarN(E);
         break;
         /****** below methods are "Slow": *****/
     case (NumFastMethods + 0):
