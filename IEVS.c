@@ -163,7 +163,7 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define MaxNumVoters 2048
 #define MaxNumIssues 8
 #define MaxScenarios 17424
-#define NumMethods 69 /*EMETH the # in this line needs to change if add new voting method*/
+#define NumMethods 74 /*EMETH the # in this line needs to change if add new voting method*/
 #define NumSlowMethods 8
 #define NumFastMethods (NumMethods - NumSlowMethods)
 #define NumUtilGens 11 /*UTGEN the # in this line needs to change if add new util gen*/
@@ -2107,6 +2107,7 @@ uint HeismanVoteCount[MaxNumCands];
 uint BaseballVoteCount[MaxNumCands];
 uint SumOfDefeatMargins[MaxNumCands];
 int WorstDefeatMargin[MaxNumCands];
+int SSworstDefeatMargin[MaxNumCands];
 int RayDefeatMargin[MaxNumCands];
 int RayBeater[MaxNumCands];
 int ARVictMargin[MaxNumCands];
@@ -2612,11 +2613,16 @@ EMETH Black(edata *E /* Condorcet winner if exists, else use Borda */
     return BordaWinner;
 }
 
-EMETH RandomPair(edata *E)
-{ /*pairwise honest-util winner among 2 random candidates is elected*/
+EMETH RandomPairHU(edata *E) /*pairwise honest-util winner among 2 random candidates is elected*/
+{                            /*WDS 29 April 2021 bug fixed*/
     int x, y;
+    if (E->NumCands < 2)
+        return (0);
     x = (int)RandInt(E->NumCands);
-    y = (int)RandInt(E->NumCands);
+    do
+    {
+        y = (int)RandInt(E->NumCands);
+    } while (x == y);
     if (UtilitySum[x] > UtilitySum[y])
         return x;
     if (UtilitySum[x] < UtilitySum[y])
@@ -2624,6 +2630,26 @@ EMETH RandomPair(edata *E)
     if (RandBool())
         return (y);
     return (x);
+}
+
+EMETH RandomPairSM(edata *E) /*pairwise simple-majority winner among 2 random candidates is elected*/
+{                            /*WDS added 29 April 2021*/
+    int x, y, marg;
+    if (E->NumCands < 2)
+        return (0);
+    x = (int)RandInt(E->NumCands);
+    do
+    {
+        y = (int)RandInt(E->NumCands);
+    } while (x == y);
+    marg = E->DefeatsMatrix[x * E->NumCands + y] - E->DefeatsMatrix[y * E->NumCands + x];
+    if (marg > 0)
+        return x;
+    if (marg < 0)
+        return y;
+    if (RandBool())
+        return x;
+    return y;
 }
 
 EMETH NansonBaldwin(edata *E /* repeatedly eliminate Borda loser */
@@ -5074,6 +5100,108 @@ StarGranul=6  */
     return winner;
 }
 
+/* CondOpt elects the SmithSet member with greatest summed utility.
+This is a silly imaginary "unachievable" election method because in real life, utilities are not known.
+(But it is achievable inside IEVS since it knows utilities.) But nevertheless CondOpt has some interest because it presumably delivers BETTER Bayesian Regret than any actually-achievable Condorcet method.
+  Similarly CondWorst elects the SmithSet member with least summed utility, and presumably delivers WORSE Bayesian Regret than any actually-achievable Condorcet method.
+About Smith and Schwartz sets:
+  SmithMembs[]   smallest nonempty set of canddts that pairwise-beat
+all nonmembers
+  SchwartzMembs[]  smallest nonempty set of canddts undefeated by nonmembers *******/
+
+EMETH CondOpt(edata *E /*elects "magic best" (greatest summed utility) SmithSet member */
+)
+{ /*WDS: untested 29 April 2021*/
+    int i, r, x, t, j, winner;
+    real u, maxu = -HUGE;
+    if (CopeWinOnlyWinner < 0)
+        BuildDefeatsMatrix(E);
+    if (CWSPEEDUP && CondorcetWinner >= 0)
+        return (CondorcetWinner);
+    for (i = E->NumCands - 1; i >= 0; i--)
+    {
+        j = RandCandPerm[i];
+        if (SmithMembs[j])
+        {
+            // FIXME NEED TO DEFINE u = Utility[j];
+            if (u > maxu)
+            {
+                maxu = u;
+                winner = j;
+            }
+        }
+    }
+    assert(winner >= 0);
+    assert(winner < E->NumCands);
+    return winner;
+}
+
+EMETH CondWorst(edata *E /*elects "magic worst" (least summed utility) SmithSet member */
+)
+{ /*WDS: untested 29 April 2021*/
+    int i, r, x, t, j, winner;
+    real u, minu = HUGE;
+    if (CopeWinOnlyWinner < 0)
+        BuildDefeatsMatrix(E);
+    if (CWSPEEDUP && CondorcetWinner >= 0)
+        return (CondorcetWinner);
+    for (i = E->NumCands - 1; i >= 0; i--)
+    {
+        j = RandCandPerm[i];
+        if (SmithMembs[j])
+        {
+            // FIXME NEED TO DEFINE u = Utility[j];
+            if (u < minu)
+            {
+                minu = u;
+                winner = j;
+            }
+        }
+    }
+    assert(winner >= 0);
+    assert(winner < E->NumCands);
+    return winner;
+}
+
+EMETH SmithMinMax(edata *E /* Like SimpsonKramer, but only among Smith-set candidates */
+)
+{ /* WDS: untested 29 April 2021. Side effects: SSworstDefeatMargin[] */
+    int i, r, x, t, j, winner;
+    if (CopeWinOnlyWinner < 0)
+        BuildDefeatsMatrix(E);
+    if (CWSPEEDUP && CondorcetWinner >= 0)
+        return (CondorcetWinner);
+    for (i = E->NumCands - 1; i >= 0; i--)
+    {
+        SSworstDefeatMargin[i] = BIGINT;
+    }
+    for (i = E->NumCands - 1; i >= 0; i--)
+        if (SmithMembs[i])
+        {
+            t = 0;
+            RandomlyPermute(E->NumCands, RandCandPerm);
+            for (j = E->NumCands - 1; j >= 0; j--)
+                if (SmithMembs[j])
+                {
+                    r = RandCandPerm[j];
+                    x = E->MarginsMatrix[r * E->NumCands + i];
+                    if (x > t)
+                        t = x;
+                }
+            SSworstDefeatMargin[i] = t;
+        }
+    winner = ArgMinIntArr(E->NumCands, SSworstDefeatMargin, (int *)RandCandPerm);
+    return winner;
+}
+
+EMETH DurandCondHare(edata *E /*elects CW if exists, otherwise IRV winner*/
+)
+{ /*WDS: untested 30 April 2021. Must be run AFTER some Condorcet method and also after IRV; but both are core methods so that is ok*/
+    if (CondorcetWinner >= 0)
+        return (CondorcetWinner);
+    return IRVwinner;
+}
+
 /******** uber-routines which package many voting methods into one: **********/
 
 void PrintMethName(int WhichMeth, bool Padding)
@@ -5212,179 +5340,204 @@ void PrintMethName(int WhichMeth, bool Padding)
             PrintNSpaces(1);
         break;
     case (26):
-        printf("RandomPair");
+        printf("RandomPairHU");
         if (Padding)
-            PrintNSpaces(3);
+            PrintNSpaces(1);
         break;
     case (27):
+        printf("RandomPairSM");
+        if (Padding)
+            PrintNSpaces(1);
+        break;
+    case (28):
         printf("NansonBaldwin");
         if (Padding)
             PrintNSpaces(0);
         break;
-    case (28):
+    case (29):
         printf("Nauru");
         if (Padding)
             PrintNSpaces(8);
         break;
-    case (29):
+    case (30):
         printf("TopMedianRating");
         if (Padding)
             PrintNSpaces(0);
         break;
-    case (30):
+    case (31):
         printf("LoMedianRank");
         if (Padding)
             PrintNSpaces(3);
         break;
-    case (31):
+    case (32):
         printf("RaynaudElim");
         if (Padding)
             PrintNSpaces(4);
         break;
-    case (32):
+    case (33):
         printf("ArrowRaynaud");
         if (Padding)
             PrintNSpaces(3);
         break;
-    case (33):
+    case (34):
         printf("Sinkhorn");
         if (Padding)
             PrintNSpaces(7);
         break;
-    case (34):
+    case (35):
         printf("KeenerEig");
         if (Padding)
             PrintNSpaces(7);
         break;
-    case (35):
+    case (36):
         printf("MDDA");
         if (Padding)
             PrintNSpaces(12);
         break;
-    case (36):
+    case (37):
         printf("VenzkeDisqPlur");
         if (Padding)
             PrintNSpaces(2);
         break;
-    case (37):
+    case (38):
         printf("CondorcetApproval");
         if (Padding)
             PrintNSpaces(0);
         break;
-    case (38):
+    case (39):
         printf("UncoveredSet");
         if (Padding)
             PrintNSpaces(4);
         break;
-    case (39):
+    case (40):
         printf("BramsSanverPrAV");
         if (Padding)
             PrintNSpaces(3);
         break;
-    case (40):
+    case (41):
         printf("Coombs");
         if (Padding)
             PrintNSpaces(12);
         break;
-    case (41):
+    case (42):
         printf("Top3IRV");
         if (Padding)
             PrintNSpaces(11);
         break;
-    case (42):
+    case (43):
         printf("ContinCumul");
         if (Padding)
             PrintNSpaces(7);
         break;
-    case (43):
+    case (44):
         printf("IterCopeland");
         if (Padding)
             PrintNSpaces(6);
         break;
-    case (44):
+    case (45):
         printf("HeitzigRiver");
         if (Padding)
             PrintNSpaces(6);
         break;
-    case (45):
+    case (46):
         printf("MCA");
         if (Padding)
             PrintNSpaces(15);
         break;
-    case (46):
+    case (47):
         printf("Range3");
         if (Padding)
             PrintNSpaces(12);
         break;
-    case (47):
+    case (48):
         printf("Range10");
         if (Padding)
             PrintNSpaces(11);
         break;
-    case (48):
+    case (49):
         printf("HeismanTrophy");
         if (Padding)
             PrintNSpaces(2);
         break;
-    case (49):
+    case (50):
         printf("BaseballMVP");
         if (Padding)
             PrintNSpaces(4);
         break;
-    case (50):
+    case (51):
         printf("App2Runoff");
         if (Padding)
             PrintNSpaces(5);
         break;
-    case (51):
+    case (52):
         printf("Range2Runoff");
         if (Padding)
             PrintNSpaces(3);
         break;
-    case (52):
+    case (53):
         printf("HeitzigDFC");
         if (Padding)
             PrintNSpaces(5);
         break;
-    case (53):
+    case (54):
         printf("ArmytagePCSchulze");
         if (Padding)
             PrintNSpaces(0);
         break;
-    case (54):
+    case (55):
         printf("Hay");
         if (Padding)
             PrintNSpaces(12);
         break;
-    case (55):
+    case (56):
         printf("HeitzigLFC");
         if (Padding)
             PrintNSpaces(5);
         break;
-    case (56):
+    case (57):
         printf("Benham2AppRunoff");
         if (Padding)
             PrintNSpaces(0);
         break;
-    case (57):
+    case (58):
         printf("Benham2AppRunB");
         if (Padding)
             PrintNSpaces(0);
         break;
-    case (58):
+    case (59):
         printf("WoodallDAC");
         if (Padding)
             PrintNSpaces(5);
         break;
-    case (59):
+    case (60):
         printf("UncAAO");
         if (Padding)
             PrintNSpaces(9);
         break;
-    case (60):
+    case (61):
         printf("StarN");
         if (Padding)
             PrintNSpaces(10);
+        break;
+    case (62):
+        printf("CondOpt");
+        if (Padding)
+            PrintNSpaces(8);
+        break;
+    case (63):
+        printf("CondWorst");
+        if (Padding)
+            PrintNSpaces(6);
+        break;
+    case (64):
+        printf("SmithMinMax");
+        if (Padding)
+            PrintNSpaces(4);
+        break;
+    case (65):
+        printf("DurandCondHare");
+        if (Padding)
+            PrintNSpaces(1);
         break;
         /****** below methods are "Slow": *****/
     case (NumFastMethods + 0):
@@ -5533,111 +5686,126 @@ int GimmeWinner(edata *E, int WhichMeth)
         w = RandomBallot(E);
         break;
     case (26):
-        w = RandomPair(E);
+        w = RandomPairHU(E);
         break;
     case (27):
-        w = NansonBaldwin(E);
+        w = RandomPairSM(E);
         break;
     case (28):
-        w = Nauru(E);
+        w = NansonBaldwin(E);
         break;
     case (29):
-        w = TopMedianRating(E);
+        w = Nauru(E);
         break;
     case (30):
-        w = LoMedianRank(E);
+        w = TopMedianRating(E);
         break;
     case (31):
-        w = RaynaudElim(E);
+        w = LoMedianRank(E);
         break;
     case (32):
-        w = ArrowRaynaud(E);
+        w = RaynaudElim(E);
         break;
     case (33):
-        w = Sinkhorn(E);
+        w = ArrowRaynaud(E);
         break;
     case (34):
-        w = KeenerEig(E);
+        w = Sinkhorn(E);
         break;
     case (35):
-        w = MDDA(E);
+        w = KeenerEig(E);
         break;
     case (36):
-        w = VenzkeDisqPlur(E);
+        w = MDDA(E);
         break;
     case (37):
-        w = CondorcetApproval(E);
+        w = VenzkeDisqPlur(E);
         break;
     case (38):
-        w = UncoveredSet(E);
+        w = CondorcetApproval(E);
         break;
     case (39):
-        w = BramsSanverPrAV(E);
+        w = UncoveredSet(E);
         break;
     case (40):
-        w = Coombs(E);
+        w = BramsSanverPrAV(E);
         break;
     case (41):
-        w = Top3IRV(E);
+        w = Coombs(E);
         break;
     case (42):
-        w = ContinCumul(E);
+        w = Top3IRV(E);
         break;
     case (43):
-        w = IterCopeland(E);
+        w = ContinCumul(E);
         break;
     case (44):
-        w = HeitzigRiver(E);
+        w = IterCopeland(E);
         break;
     case (45):
-        w = MCA(E);
+        w = HeitzigRiver(E);
         break;
     case (46):
+        w = MCA(E);
+        break;
+    case (47):
         RangeGranul = 3;
         w = RangeN(E);
         break;
-    case (47):
+    case (48):
         RangeGranul = 10;
         w = RangeN(E);
         break;
-    case (48):
+    case (49):
         w = HeismanTrophy(E);
         break;
-    case (49):
+    case (50):
         w = BaseballMVP(E);
         break;
-    case (50):
+    case (51):
         w = App2Runoff(E);
         break;
-    case (51):
+    case (52):
         w = Range2Runoff(E);
         break;
-    case (52):
+    case (53):
         w = HeitzigDFC(E);
         break;
-    case (53):
+    case (54):
         w = ArmytagePCSchulze(E);
         break;
-    case (54):
+    case (55):
         w = Hay(E);
         break;
-    case (55):
+    case (56):
         w = HeitzigLFC(E);
         break;
-    case (56):
+    case (57):
         w = Benham2AppRunoff(E);
         break;
-    case (57):
+    case (58):
         w = Benham2AppRunB(E);
         break;
-    case (58):
+    case (59):
         w = WoodallDAC(E);
         break;
-    case (59):
+    case (60):
         w = UncAAO(E);
         break;
-    case (60):
+    case (61):
         w = StarN(E);
+        break;
+    case (62):
+        w = CondOpt(E);
+        break;
+    case (63):
+        w = CondWorst(E);
+        break;
+    case (64):
+        w = SmithMinMax(E);
+        break;
+    case (65):
+        w = DurandCondHare(E);
         break;
         /****** below methods are "Slow": *****/
     case (NumFastMethods + 0):
