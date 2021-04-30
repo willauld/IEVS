@@ -1,8 +1,15 @@
+/**************************************************************
+ * Waren D Smith's IEVS program
+ * 
+ * Needs at least 4m for the stack. This requires link args:
+ *      gcc "-Wl,--stack,4194304" .\IEVS.c 
+ */
 #define TRUE (0 < 1)
 #define FALSE (1 < 0)
 #define MSWINDOWS FALSE
 #if MSWINDOWS
-#include "stdafx.h" /*needed if Microsoft Windows OS, unwanted if LINUX; will be more of that*/
+/*needed if Microsoft Windows OS, unwanted if LINUX; will be more of that */
+#include "stdafx.h"
 #endif
 #include <stdio.h>
 #define NO_OLDNAMES
