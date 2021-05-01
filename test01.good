@@ -4,7 +4,7 @@ Version=3.240000  Year=2007  Month=2
 Constants:
 sizeof(uint)=4 bytes	sizeof(uint32)=4	sizeof(uint64)=8	sizeof(real)=8
 sizeof(edata)=2261000	MaxNumCands=32	MaxNumVoters=2048	MaxNumIssues=8
-NumMethods=74	NumCoreMethods=12	TRUE=1	FALSE=0
+NumMethods=68	NumCoreMethods=12	TRUE=1	FALSE=0
 ArtinPrime=196549
 BROutputMode=0
 
