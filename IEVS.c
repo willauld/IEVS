@@ -5202,6 +5202,97 @@ EMETH DurandCondHare(edata *E /*elects CW if exists, otherwise IRV winner*/
     return IRVwinner;
 }
 
+/******** Define Method Vector - Assumes all EMETH routines define above *****/
+
+typedef int (*func)(edata *E);
+typedef struct
+{
+    char *name;
+    func funcptr;
+} methodInfo;
+
+methodInfo methodsVector[] = {
+    {"SociallyBest", SociallyBest},
+    {"SociallyWorst", SociallyWorst},
+    {"RandomWinner", RandomWinner},
+    {"Plurality", Plurality},
+    {"Borda", Borda},
+    {"IRV", IRV},
+    {"Approval", Approval},
+    {"Range", Range},
+    {"SmithSet", SmithSet},
+    {"SchwartzSet", SchwartzSet},
+    {"AntiPlurality", AntiPlurality},
+    {"Top2Runoff", Top2Runoff},
+    /****** above methods were "Core"; below are optional *****/
+    {"CondorcetLR", CondorcetLR},
+    {"SimpsonKramer", SimpsonKramer},
+    {"Bucklin", Bucklin},
+    {"Copeland", Copeland},
+    {"SimmonsCond", SimmonsCond},
+    {"SmithIRV", SmithIRV},
+    {"BTRIRV", BTRIRV},
+    {"DMC", DMC},
+    {"Dabagh", Dabagh},
+    {"VtForAgainst", VtForAgainst},
+    {"SchulzeBeatpaths", SchulzeBeatpaths},
+    {"PlurIR", PlurIR},
+    {"Black", Black},
+    {"RandomBallot", RandomBallot},
+    {"RandomPairHU", RandomPairHU},
+    {"RandomPairSM", RandomPairSM},
+    {"NansonBaldwin", NansonBaldwin},
+    {"Nauru", Nauru},
+    {"TopMedianRating", TopMedianRating},
+    {"LoMedianRank", LoMedianRank},
+    {"RaynaudElim", RaynaudElim},
+    {"ArrowRaynaud", ArrowRaynaud},
+    {"Sinkhorn", Sinkhorn},
+    {"KeenerEig", KeenerEig},
+    {"MDDA", MDDA},
+    {"VenzkeDisqPlur", VenzkeDisqPlur},
+    {"CondorcetApproval", CondorcetApproval},
+    {"UncoveredSet", UncoveredSet},
+    {"BramsSanverPrAV", BramsSanverPrAV},
+    {"Coombs", Coombs},
+    {"Top3IRV", Top3IRV},
+    {"ContinCumul", ContinCumul},
+    {"IterCopeland", IterCopeland},
+    {"HeitzigRiver", HeitzigRiver},
+    {"MCA", MCA},
+    //{"Range3", Range3},
+    //{"Range10", Range10},
+    {"HeismanTrophy", HeismanTrophy},
+    {"BaseballMVP", BaseballMVP},
+    {"App2Runoff", App2Runoff},
+    {"Range2Runoff", Range2Runoff},
+    {"HeitzigDFC", HeitzigDFC},
+    {"ArmytagePCSchulze", ArmytagePCSchulze},
+    {"Hay", Hay},
+    {"HeitzigLFC", HeitzigLFC},
+    {"Benham2AppRunoff", Benham2AppRunoff},
+    {"Benham2AppRunB", Benham2AppRunB},
+    {"WoodallDAC", WoodallDAC},
+    {"UncAAO", UncAAO},
+    {"StarN", StarN},
+    {"CondOpt", CondOpt},
+    {"CondWorst", CondWorst},
+    {"SmithMinMax", SmithMinMax},
+    {"DurandCondHare", DurandCondHare},
+};
+
+/****** below methods are "Slow": *****/
+methodInfo slowMethodsVector[] = {
+    {"TidemanRankedPairs", TidemanRankedPairs},
+    //{"IRNR2", IRNR2},
+    //{"IRNR1", IRNR1},
+    //{"IRNR3", IRNR3},
+    //{"IRNR9", IRNR9},
+    {"IRNRv", IRNRv},
+    {"IRNRm", IRNRm},
+    {"Rouse", Rouse},
+};
+
 /******** uber-routines which package many voting methods into one: **********/
 
 void PrintMethName(int WhichMeth, bool Padding)
