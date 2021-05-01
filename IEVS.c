@@ -77,11 +77,13 @@ ICA, Maxtree, range+runoff(based on range ballots with ties discarded),
 RRV+runoff, Sarvo-methods, Banks set, Boehm, Dodgson.
 Asset & Candidate-withdrawal-option-IRV (both don't really fit into our model).
 To add a new voting method you need to:
-add your new EMETH subroutine, and you need to change 3 more lines:
-  #define NumMethods PutCorrect#Methodshere
-  and the case lines in GimmeWinner() and PrintMethName().
-(If you add a new "core" method also must change NumCoreMethods and 
-perhaps renumber the methods...)
+add your new EMETH subroutine above the definition of methodsVector[]. then add
+your routine to either methodsVector[] or slowMethodsVector[] as
+    { "yourRoutineName", yourRoutineName },
+
+(If you add a new "core" method you must change NumCoreMethods and 
+and be sure to place the methodsVector[] entry in the core methods section at
+the top of the vector.)
 
 Currently only rating-based, strict-ranking-based, and approval-based methods (& combinations)
 are supported - equalities are not allowed in rankings.  ("3-slot" methods
