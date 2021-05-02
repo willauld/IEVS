@@ -13,7 +13,8 @@ testSim02
 1
 1
 !
-diff -s ./test01.out ./test01.good
+diff -s ./test02.out ./test02.good
+diff -s ./testSim02.out ./testSim02.good
 
 # PS C:\home\auld\src\IEVS> .\a.exe
 # IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!
