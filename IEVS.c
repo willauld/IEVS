@@ -7165,8 +7165,8 @@ void BRDriver()
                                 for (B.NumCands = candnumlower; B.NumCands <= candnumupper; B.NumCands++)
                                 {
                                     B.NumElections = numelections2try;
-                                    /*1299999=good enough to get all BRs accurate to at least 3 significant digits*/
-                                    /*2999=good enough for usually 2 sig figs, and is 400X faster*/
+                                    /*1,299,999=good enough to get all BRs accurate to at least 3 significant digits*/
+                                    /*2,999=good enough for usually 2 sig figs, and is 400X faster*/
                                     B.IgnoranceAmplitude = IgnLevels[iglevel];
                                     FillBoolArray(NumMethods, VotMethods, TRUE); /*might want to only do a subset... ??*/
                                     printf("\n");
