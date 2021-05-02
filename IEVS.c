@@ -7795,6 +7795,7 @@ int serr, terr;
 
 int cloneAndRedirectTo(char * file_name) 
 {
+    time_t now;
     char errmsg[100];
     char file_out[100];
     char file_err[100];
@@ -7812,11 +7813,19 @@ int cloneAndRedirectTo(char * file_name)
 
     if (-1 == dup2(tout, fileno(stdout))) { perror("cannot redirect stdout"); return 255; }
     if (-1 == dup2(terr, fileno(stderr))) { perror("cannot redirect stderr"); return 255; }
+
+    time(&now);
+    printf("Start Sim at %s", ctime(&now));
+
     return 0;
 }
 
 void restoreRedirectedIO()
 {
+    time_t now;
+    time(&now);
+    printf("Start Sim at %s", ctime(&now));
+
     fflush(stdout); close(tout);
     fflush(stderr); close(terr);
 
