@@ -166,11 +166,6 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define MaxNumIssues 8
 #define MaxScenarios 17424
 
-// OLD DEFINITIONS
-//#define NumMethods 74 /*EMETH the # in this line needs to change if add new voting method*/
-//#define NumSlowMethods 8
-//#define NumFastMethods (NumMethods - NumSlowMethods)
-// NEW DEFINITIONS
 #define NumSlowMethods ((uint)sizeof(slowMethodsVector) / 16)
 #define NumFastMethods ((uint)sizeof(methodsVector) / 16)
 #define NumMethods (NumFastMethods + NumSlowMethods)
