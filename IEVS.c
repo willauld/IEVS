@@ -12,9 +12,11 @@
 #include "stdafx.h"
 #endif
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #define NO_OLDNAMES
 #include <math.h>
-#include <stdlib.h>
 #include <stdint.h>
 #include <assert.h>
 #include <ctype.h>
@@ -7788,6 +7790,53 @@ void RWBRDriver()
     fflush(stdout);
 }
 
+int sout, tout;
+int serr, terr;
+
+int cloneAndRedirectTo(char * file_name) 
+{
+    time_t now;
+    char errmsg[100];
+    char file_out[100];
+    char file_err[100];
+    strcat(strcpy(file_out, file_name), ".out");
+    strcat(strcpy(file_err, file_name), ".err");
+
+    tout = open(file_out, O_RDWR|O_CREAT|O_APPEND, 0600);
+    if (tout == -1) { perror(strcat(strcpy(errmsg, "opening "),file_out)); return 255; }
+
+    terr = open(file_err, O_RDWR|O_CREAT|O_APPEND, 0600);
+    if (terr == -1) { perror(strcat(strcpy(errmsg, "opening "),file_err)); return 255; }
+
+    sout = dup(fileno(stdout));
+    serr = dup(fileno(stderr));
+
+    if (-1 == dup2(tout, fileno(stdout))) { perror("cannot redirect stdout"); return 255; }
+    if (-1 == dup2(terr, fileno(stderr))) { perror("cannot redirect stderr"); return 255; }
+
+    time(&now);
+    printf("Start Sim at %s", ctime(&now));
+
+    return 0;
+}
+
+void restoreRedirectedIO()
+{
+    time_t now;
+    time(&now);
+    printf("Start Sim at %s", ctime(&now));
+
+    fflush(stdout); close(tout);
+    fflush(stderr); close(terr);
+
+    dup2(sout, fileno(stdout));
+    dup2(serr, fileno(stderr));
+
+    close(sout);
+    close(serr);
+}
+
+
 /*************************** MAIN CODE: ***************************/
 
 void main()
@@ -7798,6 +7847,7 @@ void main()
     int xx[16], yy[16];
     real cscore;
     char fname[100];
+    char outfilename[100];
     brdata B;
 
     printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
@@ -7821,7 +7871,9 @@ void main()
     assert(!EmptySet(5));
     assert(EmptySet(0));
 
-    printf("What do you want to do?\n1=BayesianRegrets\n2=YeePicture\n");
+    printf("What do you want to do?\n");
+    printf("1=BayesianRegrets\n");
+    printf("2=YeePicture\n");
     printf("3=Test RandGen (and other self-tests)\n");
     printf("4=Tally an election with votes you enter\n");
     do
@@ -7833,6 +7885,16 @@ void main()
         case (1):
             printf("Answer a sequence of questions indicating what output format you want for\n");
             printf("the regret tables:\n");
+            printf("0. Simulation output file name? enter name or <return> is not desired.\n");
+            fflush(stdout);
+            scanf("%s", outfilename);
+            if (strlen(outfilename)) {
+                printf("Simulatin output will be written to: %s.out\n\n", outfilename);
+            }else {
+                printf("Simulation output will be written to the terminal.\n\n");
+            }
+
+
             printf("I. voting methods (1) sorted-by-regret or (2) by voting-method-number?\n");
             printf("[The latter, while arbitrary, has the advantage of invariance throughout the run.]\n");
             do
@@ -8066,7 +8128,9 @@ void main()
 	    printf("Using L%d distances.\n", LPpow);
 	    *****/
                     }
+                    if (strlen(outfilename)) cloneAndRedirectTo(outfilename);
                     BRDriver();
+                    if (strlen(outfilename)) restoreRedirectedIO();
                     break;
                 case (2):
                     printf("Real-world-based.\n");
