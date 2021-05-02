@@ -1,8 +1,8 @@
 #rm ./test01.out
-./a.exe > ./test01.out <<!
+./a.exe > ./test02.out <<!
 12345
 1
-SimulationResults
+testSim02
 2
 1
 1
