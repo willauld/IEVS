@@ -29,7 +29,8 @@
 #endif
 
 /* #define NDEBUG    uncomment this line if want to turn off asserts for speed */
-#define VERSION 3.24
+// 5-1-2021 updating form .24 to .25 as we have been change the code WGA
+#define VERSION 3.25
 #define VERSIONYEAR 2007
 #define VERSIONMONTH 2
 
