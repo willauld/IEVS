@@ -31,8 +31,8 @@
 /* #define NDEBUG    uncomment this line if want to turn off asserts for speed */
 // 5-1-2021 updating form .24 to .25 as we have been change the code WGA
 #define VERSION 3.25
-#define VERSIONYEAR 2007
-#define VERSIONMONTH 2
+#define VERSIONYEAR 2021
+#define VERSIONMONTH 5
 
 /**IEVS ***** Warren D. Smiths's 2007 infinitely extendible voting system comparison engine ****
 Copyright (C): Warren D. Smith 2007.  Anybody can use this non-commercially 
