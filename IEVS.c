@@ -6190,7 +6190,7 @@ void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
     ZeroRealArray(NumMethods, B->SRegret);
     ZeroIntArray(NumMethods, (int *)B->RegCount);
     ZeroIntArray(NumMethods * NumMethods, (int *)B->AgreeCount);
-    ZeroIntArray(NumMethods * NumMethods, (int *)B->AgreeCount);
+    //ZeroIntArray(NumMethods * NumMethods, (int *)B->AgreeCount); // repeated line DELETEME
     ZeroIntArray(NumMethods, (int *)B->CondAgreeCount);
     ZeroIntArray(NumMethods, (int *)B->TrueCondAgreeCount);
     InitCoreElState();
@@ -7167,8 +7167,8 @@ void BRDriver()
                                 for (B.NumCands = candnumlower; B.NumCands <= candnumupper; B.NumCands++)
                                 {
                                     B.NumElections = numelections2try;
-                                    /*1299999=good enough to get all BRs accurate to at least 3 significant digits*/
-                                    /*2999=good enough for usually 2 sig figs, and is 400X faster*/
+                                    /*1,299,999=good enough to get all BRs accurate to at least 3 significant digits*/
+                                    /*2,999=good enough for usually 2 sig figs, and is 400X faster*/
                                     B.IgnoranceAmplitude = IgnLevels[iglevel];
                                     FillBoolArray(NumMethods, VotMethods, TRUE); /*might want to only do a subset... ??*/
                                     printf("\n");
@@ -7794,7 +7794,7 @@ int sout, tout;
 int serr, terr;
 time_t sim_start;
 
-int cloneAndRedirectTo(char * file_name) 
+int cloneAndRedirectTo(char *file_name)
 {
     char errmsg[100];
     char file_out[100];
@@ -7802,17 +7802,33 @@ int cloneAndRedirectTo(char * file_name)
     strcat(strcpy(file_out, file_name), ".out");
     strcat(strcpy(file_err, file_name), ".err");
 
-    tout = open(file_out, O_RDWR|O_CREAT|O_APPEND, 0600);
-    if (tout == -1) { perror(strcat(strcpy(errmsg, "opening "),file_out)); return 255; }
+    tout = open(file_out, O_RDWR | O_CREAT | O_APPEND, 0600);
+    if (tout == -1)
+    {
+        perror(strcat(strcpy(errmsg, "opening "), file_out));
+        return 255;
+    }
 
-    terr = open(file_err, O_RDWR|O_CREAT|O_APPEND, 0600);
-    if (terr == -1) { perror(strcat(strcpy(errmsg, "opening "),file_err)); return 255; }
+    terr = open(file_err, O_RDWR | O_CREAT | O_APPEND, 0600);
+    if (terr == -1)
+    {
+        perror(strcat(strcpy(errmsg, "opening "), file_err));
+        return 255;
+    }
 
     sout = dup(fileno(stdout));
     serr = dup(fileno(stderr));
 
-    if (-1 == dup2(tout, fileno(stdout))) { perror("cannot redirect stdout"); return 255; }
-    if (-1 == dup2(terr, fileno(stderr))) { perror("cannot redirect stderr"); return 255; }
+    if (-1 == dup2(tout, fileno(stdout)))
+    {
+        perror("cannot redirect stdout");
+        return 255;
+    }
+    if (-1 == dup2(terr, fileno(stderr)))
+    {
+        perror("cannot redirect stderr");
+        return 255;
+    }
 
     time(&sim_start);
     printf("Start Sim at %s", ctime(&sim_start));
@@ -7831,8 +7847,10 @@ void restoreRedirectedIO()
     diff_t = difftime(now, sim_start);
     printf("Execution time = %f seconds\n", diff_t);
 
-    fflush(stdout); close(tout);
-    fflush(stderr); close(terr);
+    fflush(stdout);
+    close(tout);
+    fflush(stderr);
+    close(terr);
 
     dup2(sout, fileno(stdout));
     dup2(serr, fileno(stderr));
@@ -7840,7 +7858,6 @@ void restoreRedirectedIO()
     close(sout);
     close(serr);
 }
-
 
 /*************************** MAIN CODE: ***************************/
 
@@ -7890,15 +7907,18 @@ void main()
         case (1):
             printf("Answer a sequence of questions indicating what output format you want for\n");
             printf("the regret tables:\n");
-            printf("0. Simulation output file name? enter name or <return> is not desired.\n");
+            printf("0. Simulation output file name? enter name or \'none\'<return> is not desired.\n");
             fflush(stdout);
             scanf("%s", outfilename);
-            if (strlen(outfilename)) {
-                printf("Simulatin output will be written to: %s.out\n\n", outfilename);
-            }else {
+            if (!strcmp("none", outfilename))
+            {
+                outfilename[0] = '\0';
                 printf("Simulation output will be written to the terminal.\n\n");
             }
-
+            else
+            {
+                printf("Simulatin output will be written to: %s.out\n\n", outfilename);
+            }
 
             printf("I. voting methods (1) sorted-by-regret or (2) by voting-method-number?\n");
             printf("[The latter, while arbitrary, has the advantage of invariance throughout the run.]\n");
@@ -8133,9 +8153,11 @@ void main()
 	    printf("Using L%d distances.\n", LPpow);
 	    *****/
                     }
-                    if (strlen(outfilename)) cloneAndRedirectTo(outfilename);
+                    if (strlen(outfilename))
+                        cloneAndRedirectTo(outfilename);
                     BRDriver();
-                    if (strlen(outfilename)) restoreRedirectedIO();
+                    if (strlen(outfilename))
+                        restoreRedirectedIO();
                     break;
                 case (2):
                     printf("Real-world-based.\n");
