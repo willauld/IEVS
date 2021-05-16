@@ -7792,10 +7792,10 @@ void RWBRDriver()
 
 int sout, tout;
 int serr, terr;
+time_t sim_start;
 
 int cloneAndRedirectTo(char * file_name) 
 {
-    time_t now;
     char errmsg[100];
     char file_out[100];
     char file_err[100];
@@ -7814,8 +7814,8 @@ int cloneAndRedirectTo(char * file_name)
     if (-1 == dup2(tout, fileno(stdout))) { perror("cannot redirect stdout"); return 255; }
     if (-1 == dup2(terr, fileno(stderr))) { perror("cannot redirect stderr"); return 255; }
 
-    time(&now);
-    printf("Start Sim at %s", ctime(&now));
+    time(&sim_start);
+    printf("Start Sim at %s", ctime(&sim_start));
 
     return 0;
 }
@@ -7823,8 +7823,13 @@ int cloneAndRedirectTo(char * file_name)
 void restoreRedirectedIO()
 {
     time_t now;
+    double diff_t;
+
     time(&now);
-    printf("Start Sim at %s", ctime(&now));
+    printf("End Sim at %s", ctime(&now));
+
+    diff_t = difftime(now, sim_start);
+    printf("Execution time = %f seconds\n", diff_t);
 
     fflush(stdout); close(tout);
     fflush(stderr); close(terr);
