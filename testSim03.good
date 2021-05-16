@@ -1,0 +1,2021 @@
+Machine.
+Select which utility-generators you want (default 0 thru 15):
+ 0: RandomNormalUtils
+ 1: IssueDotProd[1]  
+ 2: IssueDotProd[2]  
+ 3: IssueDotProd[3]  
+ 4: IssueDotProd[4]  
+ 5: IssueDotProd[5]  
+ 6: IssueDistance[1]
+ 7: IssueDistance[2]
+ 8: IssueDistance[3]
+ 9: IssueDistance[4]
+10: IssueDistance[5]
+11: IssueDistance[-1] 
+12: IssueDistance[-2] 
+13: IssueDistance[-3] 
+14: IssueDistance[-4] 
+15: IssueDistance[-5] 
+Utility gens  [4, 10] chosen.
+Start Sim at Sat May 15 22:11:41 2021
+
+(Scenario#0: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#1: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#2: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#3: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#4: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#5: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#6: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#7: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#8: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#9: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#10: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#11: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#12: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#13: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#14: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#15: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#16: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#17: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#18: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#19: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#20: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#21: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#22: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#23: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#24: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#25: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#26: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#27: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#28: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#29: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#30: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#31: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#32: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#33: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#34: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#35: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#36: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#37: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#38: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#39: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#40: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#41: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#42: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#43: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#44: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#45: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#46: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#47: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#48: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#49: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#50: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#51: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#52: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#53: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#54: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#55: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#56: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#57: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#58: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#59: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#60: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#61: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#62: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#63: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#64: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#65: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#66: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#67: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#68: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#69: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#70: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#71: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#72: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#73: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#74: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#75: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#76: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#77: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#78: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#79: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#80: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#81: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#82: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#83: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#84: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#85: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#86: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#87: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#88: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#89: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#90: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#91: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#92: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#93: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#94: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#95: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#96: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#97: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#98: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#99: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#100: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#101: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#102: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#103: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#104: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#105: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#106: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#107: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#108: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#109: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#110: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#111: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#112: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#113: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#114: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#115: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#116: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#117: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#118: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#119: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#120: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#121: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#122: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#123: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#124: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#125: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.001000)
+
+
+(Scenario#126: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#127: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#128: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#129: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#130: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#131: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#132: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#133: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#134: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#135: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#136: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#137: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#138: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#139: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#140: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#141: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#142: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#143: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#144: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#145: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#146: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#147: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#148: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#149: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#150: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#151: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#152: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#153: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#154: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#155: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#156: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#157: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#158: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#159: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#160: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#161: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#162: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#163: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#164: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#165: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#166: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#167: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#168: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#169: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#170: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#171: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#172: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#173: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#174: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#175: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#176: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#177: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#178: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#179: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#180: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#181: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#182: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#183: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#184: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#185: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#186: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#187: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#188: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#189: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#190: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#191: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#192: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#193: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#194: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#195: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#196: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#197: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#198: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#199: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#200: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#201: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#202: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#203: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#204: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#205: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#206: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#207: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#208: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#209: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#210: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#211: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#212: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#213: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#214: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#215: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#216: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#217: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#218: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#219: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#220: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#221: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#222: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#223: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#224: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#225: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#226: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#227: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#228: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#229: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#230: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#231: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#232: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#233: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#234: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#235: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#236: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#237: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#238: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#239: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#240: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#241: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#242: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#243: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#244: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#245: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#246: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#247: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#248: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#249: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#250: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#251: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.010000)
+
+
+(Scenario#252: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#253: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#254: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#255: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#256: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#257: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#258: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#259: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#260: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#261: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#262: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#263: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#264: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#265: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#266: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#267: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#268: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#269: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#270: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#271: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#272: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#273: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#274: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#275: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#276: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#277: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#278: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#279: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#280: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#281: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#282: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#283: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#284: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#285: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#286: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#287: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#288: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#289: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#290: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#291: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#292: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#293: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#294: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#295: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#296: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#297: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#298: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#299: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#300: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#301: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#302: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#303: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#304: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#305: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#306: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#307: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#308: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#309: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#310: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#311: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#312: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#313: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#314: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#315: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#316: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#317: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#318: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#319: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#320: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#321: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#322: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#323: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#324: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#325: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#326: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#327: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#328: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#329: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#330: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#331: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#332: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#333: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#334: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#335: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#336: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#337: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#338: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#339: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#340: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#341: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#342: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#343: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#344: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#345: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#346: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#347: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#348: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#349: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#350: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#351: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#352: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#353: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#354: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#355: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#356: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#357: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#358: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#359: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#360: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#361: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#362: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#363: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#364: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#365: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#366: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#367: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#368: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#369: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#370: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#371: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#372: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#373: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#374: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#375: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#376: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#377: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=0.100000)
+
+
+(Scenario#378: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#379: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#380: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#381: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#382: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#383: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#384: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#385: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#386: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#387: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#388: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#389: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#390: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#391: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#392: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#393: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#394: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#395: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#396: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#397: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#398: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#399: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#400: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#401: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#402: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#403: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#404: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#405: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#406: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#407: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#408: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#409: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#410: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#411: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#412: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#413: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#414: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#415: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#416: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#417: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#418: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#419: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#420: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#421: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#422: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#423: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#424: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#425: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#426: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#427: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#428: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#429: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#430: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#431: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#432: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#433: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#434: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#435: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#436: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#437: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#438: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#439: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#440: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#441: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#442: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#443: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#444: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#445: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#446: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#447: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#448: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#449: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#450: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#451: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#452: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#453: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#454: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#455: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#456: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#457: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#458: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#459: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#460: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#461: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#462: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#463: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#464: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#465: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#466: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#467: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#468: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#469: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#470: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#471: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#472: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#473: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#474: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#475: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#476: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#477: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#478: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#479: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#480: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#481: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#482: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#483: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#484: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#485: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#486: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#487: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#488: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#489: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#490: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#491: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#492: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#493: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#494: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#495: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#496: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#497: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#498: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#499: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#500: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#501: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#502: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#503: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=1.000000)
+
+
+(Scenario#504: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#505: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#506: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#507: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#508: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#509: UtilMeth=IssueDotProd[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#510: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#511: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#512: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#513: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#514: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#515: UtilMeth=IssueDotProd[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#516: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#517: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#518: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#519: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#520: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#521: UtilMeth=IssueDotProd[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#522: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#523: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#524: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#525: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#526: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#527: UtilMeth=IssueDotProd[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#528: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#529: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#530: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#531: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#532: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#533: UtilMeth=IssueDotProd[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#534: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#535: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#536: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#537: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#538: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#539: UtilMeth=IssueDotProd[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#540: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#541: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#542: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#543: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#544: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#545: UtilMeth=IssueDistance[1] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#546: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#547: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#548: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#549: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#550: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#551: UtilMeth=IssueDistance[1] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#552: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#553: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#554: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#555: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#556: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#557: UtilMeth=IssueDistance[1] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#558: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#559: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#560: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#561: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#562: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#563: UtilMeth=IssueDistance[2] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#564: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#565: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#566: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#567: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#568: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#569: UtilMeth=IssueDistance[2] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#570: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#571: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#572: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#573: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#574: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#575: UtilMeth=IssueDistance[2] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#576: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#577: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#578: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#579: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#580: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#581: UtilMeth=IssueDistance[3] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#582: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#583: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#584: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#585: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#586: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#587: UtilMeth=IssueDistance[3] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#588: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#589: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#590: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#591: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#592: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#593: UtilMeth=IssueDistance[3] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#594: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#595: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#596: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#597: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#598: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#599: UtilMeth=IssueDistance[4] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#600: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#601: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#602: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#603: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#604: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#605: UtilMeth=IssueDistance[4] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#606: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#607: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#608: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#609: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#610: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#611: UtilMeth=IssueDistance[4] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#612: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#613: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#614: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#615: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#616: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#617: UtilMeth=IssueDistance[5] Honfrac=1.00, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#618: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#619: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#620: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#621: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#622: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#623: UtilMeth=IssueDistance[5] Honfrac=0.50, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#624: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=2, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#625: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=3, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#626: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=4, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#627: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=5, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#628: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=6, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+
+(Scenario#629: UtilMeth=IssueDistance[5] Honfrac=0.75, NumVoters=2039, NumCands=7, NumElections=59, IgnoranceAmplitude=-1.000000)
+
+==================SUMMARY OF NORMALIZED REGRET DATA FROM 630 SCENARIOS=============
+1. voting methods sorted by sum of (normalized so RandWinner=1) regrets (best first):
+0=SociallyBest   	 5.02407e-011
+7=Range          	 179.313
+33=IRNRv  	 182.11
+30=TopMedianRating	 184.047
+6=Approval       	 186.111
+4=Borda          	 198.018
+24=Black          	 205.25
+22=SchulzeBeatpaths	 208.543
+12=CondorcetLR    	 208.57
+32=TidemanRankedPairs   	 208.886
+13=SimpsonKramer  	 208.93
+15=Copeland       	 208.947
+16=SimmonsCond    	 209.608
+28=NansonBaldwin  	 211.311
+17=SmithIRV       	 211.343
+9=SchwartzSet    	 212.893
+18=BTRIRV         	 213.981
+8=SmithSet       	 215.185
+19=DMC            	 215.805
+21=VtForAgainst   	 216.643
+26=RandomPairHU   	 234.09
+11=Top2Runoff     	 263.588
+5=IRV            	 263.776
+14=Bucklin        	 269.518
+23=PlurIR         	 272.302
+20=Dabagh         	 285.369
+29=Nauru          	 302.647
+31=LoMedianRank   	 332.449
+3=Plurality      	 336.757
+10=AntiPlurality  	 344.305
+27=RandomPairSM   	 360.481
+25=RandomBallot   	 522.451
+2=RandomWinner   	 630
+1=SociallyWorst  	 1358.64
+
+2. in order of elimination by the Coombs method (worst first):
+1=SociallyWorst  
+2=RandomWinner   
+25=RandomBallot   
+27=RandomPairSM   
+26=RandomPairHU   
+10=AntiPlurality  
+3=Plurality      
+31=LoMedianRank   
+29=Nauru          
+20=Dabagh         
+23=PlurIR         
+14=Bucklin        
+11=Top2Runoff     
+5=IRV            
+21=VtForAgainst   
+19=DMC            
+18=BTRIRV         
+8=SmithSet       
+9=SchwartzSet    
+17=SmithIRV       
+28=NansonBaldwin  
+15=Copeland       
+16=SimmonsCond    
+30=TopMedianRating
+6=Approval       
+4=Borda          
+24=Black          
+32=TidemanRankedPairs   
+13=SimpsonKramer  
+22=SchulzeBeatpaths
+12=CondorcetLR    
+7=Range          
+33=IRNRv  
+Coombs Winner: 0=SociallyBest   
+
+3. voting methods sorted via Schulze beatpaths ordering (best first):
+0=SociallyBest   
+33=IRNRv  
+7=Range          
+30=TopMedianRating
+6=Approval       
+4=Borda          
+24=Black          
+12=CondorcetLR    
+15=Copeland       
+22=SchulzeBeatpaths
+16=SimmonsCond    
+13=SimpsonKramer  
+32=TidemanRankedPairs   
+17=SmithIRV       
+28=NansonBaldwin  
+9=SchwartzSet    
+8=SmithSet       
+18=BTRIRV         
+19=DMC            
+21=VtForAgainst   
+14=Bucklin        
+26=RandomPairHU   
+5=IRV            
+11=Top2Runoff     
+23=PlurIR         
+20=Dabagh         
+29=Nauru          
+31=LoMedianRank   
+3=Plurality      
+10=AntiPlurality  
+27=RandomPairSM   
+25=RandomBallot   
+2=RandomWinner   
+1=SociallyWorst  
+==========end of summary============
+End Sim at Sat May 15 22:15:40 2021
+Execution time = 239.000000 seconds
