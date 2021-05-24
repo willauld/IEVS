@@ -1004,6 +1004,11 @@ void GenRandWackyArr(int N, real Arr[])
     }
 }
 
+#define U64(y) UINT64_C(y)
+//allows long constants like U64(0x12345678abcdef0) without overflow
+//Also available:   INT8_C,  INT16_C,  INT32_C,  INT64_C,  signed
+//                 UINT8_C, UINT16_C, UINT32_C, UINT64_C,  unsigned
+
 #define BSWAPPAGE FALSE
 #define EXTRA_JUICE 0
 #define uint128 __uint128_t
@@ -1039,10 +1044,8 @@ uint64 SMWC64a()
     uint64 c = MWCstateZ >> 64; //hi half
     uint64 x = MWCstateZ;       //lo half
     MWCstateZ = x;
-    //MWCstateZ *= U64(0xF6EDDFA7D0A66EE3); WGA change next line
-    MWCstateZ *= (uint64)0xF6EDDFA7D0A66EE3;
+    MWCstateZ *= U64(0xF6EDDFA7D0A66EE3);
     MWCstateZ += c;
-    //return (x XOR c); WGA change next line
     return (x ^ c);
 }
 
@@ -1057,12 +1060,10 @@ For that reason I have added optional EXTRA_JUICE stages as postprocessing to th
 uint64 PQCG64()
 {
     uint64 x, y;
-    y = QCGstateS >> 64; //hi 64-bit half of 128-bit state
-    x = QCGstateS;       //lo half
-//#define b U64(0x56d59264c70b44db) //constants
-//#define c U64(0x4907130a7beda5e7) WGA changes on next two lines
-#define b ((uint64)0x56d59264c70b44db) //constants
-#define c ((uint64)0x4907130a7beda5e7)
+    y = QCGstateS >> 64;          //hi 64-bit half of 128-bit state
+    x = QCGstateS;                //lo half
+#define b U64(0x56d59264c70b44db) //constants
+#define c U64(0x4907130a7beda5e7)
     QCGstateS *= (2 * QCGstateS + b);
     QCGstateS += c; //quadratic recurrence mod 2 ^ 128
 #undef b
