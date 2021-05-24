@@ -1004,6 +1004,120 @@ void GenRandWackyArr(int N, real Arr[])
     }
 }
 
+#define BSWAPPAGE FALSE
+#define EXTRA_JUICE 0
+#define uint128 __uint128_t
+
+/******** Some psu-random number generators by Warren D. Smith **********/
+
+uint128 QCGstateS = 873;        //stores 128 bits of state
+uint128 MWCstateZ = 552;        //stores 128 bits of state
+uint64 Brent64state = 945;      //stores 64 bits of state
+uint64 VignaBl[2] = {656, 837}; //stores 128 bits of state
+
+/* The 8 bytes of x are permuted into reversed order: */ inline uint64 Bswap64(uint64 x) { return (__builtin_bswap64(x)); }
+
+__attribute__((always_inline)) inline uint64 Rot64(uint64 x, uint h)
+{ /* rotates 64-bit word x left (toward MS end) h hops */
+    assert(h < 64);
+    return ((x << h) | x >> (64 - h));
+}
+
+/********* SMWC ("scrambled multiply with carry") generator of psu-random 64-bit words.
+Period = 164112598795790450231783502974331912191
+  = 13757*494063303*4902566406487*4925066547083
+  = 0.48228 * 2^128  approximately.
+Note this period has no small prime factors, enabling easy combination with other random generators if desired.
+Based on the Marsaglia recurrence (c*2^64+x)_new = A*x+c where the constant A is A = 17793123614663798499 = 0xF6EDDFA7D0A66EE3, and note A*2^64-1 = 328225197591580900463567005948663824383 = prime = P.
+The period is (P-1)/2.  Outputs (x XOR c).
+Each bit of the output word has full period by itself.
+Runtime<2.23nanosec on my system (which is 2930 MHz intel core i7 iMac, so 6.5 clock cycles).
+On David Blackman's system: runtime 12 clock cycles, or 7 clocks if inlined.
+Passes PracRand at 1 Tbyte.   *********************************************/
+uint64 SMWC64a()
+{
+    uint64 c = MWCstateZ >> 64; //hi half
+    uint64 x = MWCstateZ;       //lo half
+    MWCstateZ = x;
+    //MWCstateZ *= U64(0xF6EDDFA7D0A66EE3); WGA change next line
+    MWCstateZ *= (uint64)0xF6EDDFA7D0A66EE3;
+    MWCstateZ += c;
+    //return (x XOR c); WGA change next line
+    return (x ^ c);
+}
+
+/***** PQCG ("permuted quadratic congruential") generator of psu-random 64-bit words.
+   x := (a*x+b)*x+c  mod  2^w  has  max period =2^w  iff
+   a=even, b=odd, c=odd, and (b-a) mod 4 = 1.
+For example if  b mod 4=3  (so last digit in hex is 3, 7, B, F) we may use  (2*x+b)*x+c.
+So the following generator has period = 2^128 (and given that it has 128 bits of state, is exactly equidistributed).
+It outputs 64-bits via a certain "scrambling" operation inspired by Melissa O'Neill.
+Each bit of the output word has period=2^128 by itself and the 64-bit output words are exactly equidistributed.  Nevertheless I am not in love with the output-scrambler because it (before the rotate) has high-order bits more random than low-order bits, i.e. its randomness has a "gradient"; and since some user who only uses the lexically-least rotation of each random word, is effectively seeing the unscrambled (or less scrambled, anyhow) generator.
+For that reason I have added optional EXTRA_JUICE stages as postprocessing to the output scrambler.  ******************/
+uint64 PQCG64()
+{
+    uint64 x, y;
+    y = QCGstateS >> 64; //hi 64-bit half of 128-bit state
+    x = QCGstateS;       //lo half
+//#define b U64(0x56d59264c70b44db) //constants
+//#define c U64(0x4907130a7beda5e7) WGA changes on next two lines
+#define b ((uint64)0x56d59264c70b44db) //constants
+#define c ((uint64)0x4907130a7beda5e7)
+    QCGstateS *= (2 * QCGstateS + b);
+    QCGstateS += c; //quadratic recurrence mod 2 ^ 128
+#undef b
+#undef c
+    //passes 1 hour testing (by David Blackman, thank you). Weakenings pass too:
+    //If b=3, c=1 still pass. If b=3, c=1, return(y) still pass.
+    //If a=(1<<25); b=c=1; fail badly.
+    //If a=(1<<25); b=c=1; return( Rot64(x^y, y>>58) );  pass, proving output-scrambler useful:
+#if BSWAPPAGE
+    x = Bswap64(x) - Bswap64(y);
+#else
+    x ^= y;
+#endif
+    x = Rot64(x, y >> 58); //Melissa O'Neill's rot-based output scrambler #if EXTRA_JUICE > 0
+    x ^= x << 7;
+    x ^= x >> 9;
+#if EXTRA_JUICE > 1
+    x ^= x << 7;
+    x ^= x >> 9;
+#endif
+    //#endif
+    return (x);
+}
+
+/********* A simple GF2-linear generator of psu-random 64-bit words by Richard Brent.
+Period = 2^64 - 1 = 18446744073709551615 = 3*5*17*257*641*65537*6700417 consists of every nonzero word (so exactly equidistributed aside from missing 0).
+Each bit of output word has full period by itself.
+Runtime<1.722nanosec on my system (5 clock cycles).
+On David Blackman's system: runtime 12 clock cycles, or 7 clocks if inlined, or 6 if vector output.
+Fails randomness tests (and the very fact it is GF2-linear forces it to fail tests), hence should not be used standalone: ***********************************/
+uint64 Brent64()
+{
+    Brent64state ^= Brent64state << 7;
+    Brent64state ^= Brent64state >> 9;
+    return (Brent64state);
+}
+
+/*** S.Vigna & D.Blackman generator, known to fail some tests since low-bits are too GF2-linear.
+     Period=2^128-1.  Runtime<1.47nanosec on my system (4.3 clock cycles). ****/
+uint64 Xoroshiro128()
+{
+    const uint64 s0 = VignaBl[0];
+    uint64 s1 = VignaBl[1];
+    const uint64 result = s0 + s1;
+    s1 ^= s0;
+    VignaBl[0] = Rot64(s0, 24) ^ s1 ^ (s1 << 16);
+    VignaBl[1] = Rot64(s1, 37);
+    return (result);
+}
+
+/* Runtime<2.297nanosec on my system (7 clock cycles): */
+uint64 ComboRandGenA() { return Xoroshiro128() - SMWC64a(); }
+
+uint64 ComboRandGenB() { return SMWC64a() ^ (Brent64() + PQCG64()); }
+
 void OldSortedUpRand01Arr(int N, real Arr[])
 { /*makes Arr[0..N-1] of uniform01 randoms, SORTED increasing*/
     int i;
