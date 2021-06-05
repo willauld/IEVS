@@ -6349,7 +6349,7 @@ void heapfree(void *ptr)
 void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
 {
     uint elnum;
-    edata *E = (edata *)heapalloc(sizeof(edata)); // FIXME malloc edata WGA
+    edata *E = (edata *)heapalloc(sizeof(edata));
 
     ZeroRealArray(NumMethods, B->MeanRegret);
     ZeroRealArray(NumMethods, B->SRegret);
@@ -6383,7 +6383,7 @@ void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
 void TestEDataStructs(brdata *B)
 {
     uint elnum;
-    edata *E = (edata *)heapalloc(sizeof(edata)); // FIXME malloc edata WGA
+    edata *E = (edata *)heapalloc(sizeof(edata));
     E->NumVoters = B->NumVoters;
     E->NumCands = B->NumCands;
     if (B->NumElections < 1)
@@ -7185,7 +7185,7 @@ void MakeYeePict(char filename[], int xx[], int yy[], int NumSites, int WhichMet
 {
     FILE *F;
     uchar Barray[20000];
-    edata *E = (edata *)heapalloc(sizeof(edata)); // FIXME malloc edata WGA
+    edata *E = (edata *)heapalloc(sizeof(edata));
     int i;
     uint imgsize;
 #if MSWINDOWS
