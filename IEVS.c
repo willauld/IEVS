@@ -6270,6 +6270,7 @@ void PrintConsts()
     printf("sizeof(uint64)=%d\t", (int)sizeof(uint64));
     printf("sizeof(real)=%d\n", (int)sizeof(real));
     printf("sizeof(edata)=%d\t", (int)sizeof(edata));
+    printf("sizeof(brdata)=%d\t", (int)sizeof(brdata));
     printf("MaxNumCands=%d\t", MaxNumCands);
     printf("MaxNumVoters=%d\t", MaxNumVoters);
     printf("MaxNumIssues=%d\n", MaxNumIssues);
@@ -6295,11 +6296,60 @@ void PrintConsts()
     fflush(stdout);
 }
 
+/******* heap management: **********
+ * Very limited heap management for moving a limited number of object types
+ * off the stack. In particular edata is a large structure we want to handle 
+ * with these routines. May add others as needed. 
+ * 
+ * For now assume only one size object that may be allocated and freed many
+ * times.
+ * 
+ * void * heapalloc(size_t)
+ * void free(void*)
+ * 
+ */
+void *freelist = NULL; // assume free list only needs 1 slot
+int countmallocs = 0;
+int countfrees = 0;
+
+void *heapalloc(size_t bytes)
+{
+    void *newptr = NULL;
+
+    assert(bytes == sizeof(edata));
+
+    if (freelist != NULL)
+    {
+        // not really a list, just one slot
+        newptr = freelist;
+        freelist = NULL;
+    }
+    else
+    {
+        newptr = malloc(bytes);
+        countmallocs++;
+    }
+    return newptr;
+}
+
+void heapfree(void *ptr)
+{
+    if (freelist == NULL)
+    {
+        freelist = ptr;
+    }
+    else
+    {
+        free(ptr);
+        countfrees++;
+    }
+}
+
 /************ Bayesian Regret ***********/
 void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
 {
     uint elnum;
-    edata E;
+    edata *E = (edata *)heapalloc(sizeof(edata)); // FIXME malloc edata WGA
 
     ZeroRealArray(NumMethods, B->MeanRegret);
     ZeroRealArray(NumMethods, B->SRegret);
@@ -6309,8 +6359,8 @@ void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
     ZeroIntArray(NumMethods, (int *)B->CondAgreeCount);
     ZeroIntArray(NumMethods, (int *)B->TrueCondAgreeCount);
     InitCoreElState();
-    E.NumVoters = B->NumVoters;
-    E.NumCands = B->NumCands;
+    E->NumVoters = B->NumVoters;
+    E->NumCands = B->NumCands;
     if (B->NumElections < 1)
     {
         printf("NumElections=%d<1, error\n", B->NumElections);
@@ -6319,22 +6369,23 @@ void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
     }
     for (elnum = 0; elnum < B->NumElections; elnum++)
     {
-        UtilDispatcher(&E, UtilMeth);
-        AddIgnorance(&E, B->IgnoranceAmplitude);
-        HonestyStrat(&E, B->Honfrac);
-        FindWinnersAndRegrets(&E, B, VotMethods);
+        UtilDispatcher(E, UtilMeth);
+        AddIgnorance(E, B->IgnoranceAmplitude);
+        HonestyStrat(E, B->Honfrac);
+        FindWinnersAndRegrets(E, B, VotMethods);
     }
-    B->NumVoters = E.NumVoters;
-    B->NumCands = E.NumCands;
+    B->NumVoters = E->NumVoters;
+    B->NumCands = E->NumCands;
     ScaleRealVec(NumMethods, B->SRegret, 1.0 / ((B->NumElections - 1.0) * B->NumElections)); /*StdDev/sqrt(#) = StdErr.*/
+    heapfree(E);
 }
 
 void TestEDataStructs(brdata *B)
 {
     uint elnum;
-    edata E;
-    E.NumVoters = B->NumVoters;
-    E.NumCands = B->NumCands;
+    edata *E = (edata *)heapalloc(sizeof(edata)); // FIXME malloc edata WGA
+    E->NumVoters = B->NumVoters;
+    E->NumCands = B->NumCands;
     if (B->NumElections < 1)
     {
         printf("NumElections=%d<1, error\n", B->NumElections);
@@ -6345,21 +6396,22 @@ void TestEDataStructs(brdata *B)
     {
         printf("GenNormalUtils:\n");
         fflush(stdout);
-        GenNormalUtils(&E);
+        GenNormalUtils(E);
         printf("AddIgnorance:\n");
         fflush(stdout);
-        AddIgnorance(&E, B->IgnoranceAmplitude);
+        AddIgnorance(E, B->IgnoranceAmplitude);
         printf("HonestyStrat:\n");
         fflush(stdout);
-        HonestyStrat(&E, 1.0);
+        HonestyStrat(E, 1.0);
         printf("BuildDefetasMatrix:\n");
         fflush(stdout);
-        BuildDefeatsMatrix(&E);
+        BuildDefeatsMatrix(E);
         printf("PrintEdata:\n");
         fflush(stdout);
-        PrintEdata(stdout, &E);
+        PrintEdata(stdout, E);
     }
     fflush(stdout);
+    heapfree(E);
 }
 
 /*************************** BMP BITMAP GRAPHICS: ***************************/
@@ -7133,7 +7185,7 @@ void MakeYeePict(char filename[], int xx[], int yy[], int NumSites, int WhichMet
 {
     FILE *F;
     uchar Barray[20000];
-    edata E;
+    edata *E = (edata *)heapalloc(sizeof(edata)); // FIXME malloc edata WGA
     int i;
     uint imgsize;
 #if MSWINDOWS
@@ -7152,7 +7204,7 @@ void MakeYeePict(char filename[], int xx[], int yy[], int NumSites, int WhichMet
     else if (WhichMeth == 1 && LpPow == 2)
         DrawFPvor(NumSites, (int *)xx, (int *)yy, Barray, LpPow);
     else
-        YeePicture(NumSites, (TopYeeVoters - 1) / 2, xx, yy, WhichMeth, &E, Barray,
+        YeePicture(NumSites, (TopYeeVoters - 1) / 2, xx, yy, WhichMeth, E, Barray,
                    GaussStdDev, honfrac, LpPow);
     imgsize = OutputBMPHead(200, 200, 4, TRUE, Barray, F);
     OutputFCC16ColorPalette(F);
@@ -7172,6 +7224,7 @@ void MakeYeePict(char filename[], int xx[], int yy[], int NumSites, int WhichMet
             printf("\n");
     }
     printf("\n");
+    heapfree(E);
 }
 
 real ColorContrastScore(uint NumSites, int xx[], int yy[])
@@ -7262,7 +7315,7 @@ void BRDriver()
     int i, j, k, r, prind, whichhonlevel, UtilMeth, minc, coombrd, iglevel, TopMeth;
     uint ScenarioCount = 0;
     real scalefac, reb, maxc;
-    brdata B;
+    brdata B; //FIXME malloc brdata WGA
 
     for (iglevel = 0; iglevel < 5; iglevel++)
     {
@@ -7595,7 +7648,7 @@ void RWBRDriver()
     int i, j, k, r, whichhonlevel, minc, coombrd, iglevel, TopMeth;
     uint ScenarioCount = 0;
     real scalefac, reb, maxc;
-    brdata B;
+    brdata B; // FIXME malloc brdata WGA
 
     for (iglevel = 0; iglevel < 4; iglevel++)
     {
@@ -7978,6 +8031,8 @@ void restoreRedirectedIO()
 
 void main()
 {
+    // WGA PrintConsts(); return;
+
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
     int WhichMeth, NumSites, i, j;
@@ -7985,7 +8040,7 @@ void main()
     real cscore;
     char fname[100];
     char outfilename[100];
-    brdata B;
+    brdata B; // FIXME malloc brdata WGA
 
     printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
     printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);
@@ -8480,6 +8535,9 @@ void main()
             continue;
         }
     } while (FALSE); /* end switch */
+
+    printf("countmallocs: %d, countfrees: %d\n", countmallocs, countfrees); //WGA
+
     fflush(stdout);
     exit(EXIT_SUCCESS);
 }
