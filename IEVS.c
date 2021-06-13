@@ -1,5 +1,5 @@
 /**************************************************************
- * Waren D Smith's IEVS program
+ * Warren D Smith's IEVS program
  * 
  * Needs at least 4m for the stack. This requires link args:
  *      gcc "-Wl,--stack,4194304" .\IEVS.c 
