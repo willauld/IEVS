@@ -29,6 +29,9 @@
 #include <sys/time.h>
 #include <unistd.h>
 #endif
+#ifdef INCLUDE_INI_FILE
+#include "handleini.h"
+#endif
 
 /* #define NDEBUG    uncomment this line if want to turn off asserts for speed */
 // 5-1-2021 updating form .24 to .25 as we have been change the code WGA
@@ -8028,26 +8031,10 @@ void restoreRedirectedIO()
 }
 
 /*************************** MAIN CODE: ***************************/
-#ifdef INCLUDE_INI_FILE
-int dump_ini(int argc, char *argv[]);
-int do_ini(int argc, char *argv[]);
-#endif
 
 int main(int argc, char *argv[])
 {
     // WGA PrintConsts(); return;
-#ifdef INCLUDE_INI_FILE
-    if (argc <= 1)
-    {
-        printf("Usage: missing filename.ini\n");
-        return 1;
-    }
-    else
-    {
-        dump_ini(argc, argv);
-        return do_ini(argc, argv);
-    }
-#endif
 
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
@@ -8057,6 +8044,86 @@ int main(int argc, char *argv[])
     char fname[100];
     char outfilename[100];
     brdata B; // FIXME malloc brdata WGA
+
+#ifdef INCLUDE_INI_FILE
+    if (argc <= 1)
+    {
+        printf("Usage: missing filename.ini\n");
+        return 1;
+    }
+    else
+    {
+        dump_ini(argc, argv);
+        ievs_config * config = do_ini(argc, argv);
+        printf("sizeof config*: %d\n", sizeof(config));
+        if ((unsigned long long)config == 1) return 1;
+        /* else set variables and execute */
+	    printf("-0-0-0-0-\n");
+	    printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
+	    printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
+	    printf("candnum lower: %d, upper: %d\n", config->candnumlower, config->candnumupper);
+	    printf("votnum lower: %d, upper: %d\n", config->votnumlower, config->votnumupper);
+	    printf("utilnum lower: %d, upper: %d\n", config->utilnumlower, config->utilnumupper);
+	    printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
+	    printf("BROutputMode: 0x%X\n", config->BROutputMode);
+	
+	    seed = config->seed;
+	    if (config->operation == 1) {
+	
+		    strcpy(outfilename, config->outputfile);
+		    if (config->honfraclower >= 0){
+		        honfraclower = config->honfraclower;
+		    }
+		    if (config->honfracupper >= 0){
+		        honfracupper = config->honfracupper;
+		    }
+		    if (config->candnumlower >= 0){
+		        candnumlower = config->candnumlower;
+		    }
+		    if (config->candnumupper >= 0){
+		        candnumupper = config->candnumupper;
+		    }
+		    if (config->votnumlower >= 0){
+		        votnumlower = config->votnumlower;
+		    }
+		    if (config->votnumupper >= 0){
+		        votnumupper = config->votnumupper;
+		    }
+		    if (config->utilnumlower >= 0){
+		        utilnumlower = config->utilnumlower;
+		    }
+		    if (config->utilnumupper >= 0){
+		        utilnumupper = config->utilnumupper;
+		    }
+		    if (config->numelections2try >= 0){
+		        numelections2try = config->numelections2try;
+		    }
+		    if (config->BROutputMode >= 0){
+		        BROutputMode = config->BROutputMode;
+		    }
+		    if (config->real_world_based_utilities < 0){
+                if (strlen(outfilename))
+                    cloneAndRedirectTo(outfilename);
+                BRDriver();
+                if (strlen(outfilename))
+                    restoreRedirectedIO();
+            } else {
+                printf("Real-world-based.\n");
+                if (strlen(outfilename))
+                    cloneAndRedirectTo(outfilename);
+                LoadEldataFiles();
+                RWBRDriver();
+                if (strlen(outfilename))
+                    restoreRedirectedIO();
+            }
+        } else if (config->operation == 2) {
+        } else if (config->operation == 3) {
+        } else if (config->operation == 4) {
+        }
+        return 0;
+    }
+#endif
+
 
     printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
     printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);

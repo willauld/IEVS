@@ -5,6 +5,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "ini/ini.h"
+#include "handleini.h"
 
 typedef struct
 {
@@ -12,31 +13,6 @@ typedef struct
     const char *name;
     const char *email;
 } configuration;
-
-typedef struct
-{
-    unsigned int operation; /*1.Regrets2.Picture3.RandomTests4.ManualTally*/
-    /*operation -- 1.Regrets*/
-    unsigned int BROutputMode; /*init to zero*/
-    unsigned int seed;
-    /* below init to -1 to signify unset */
-    const char *outputfile;
-    int honfraclower;
-    int honfracupper;
-    int candnumlower;
-    int candnumupper;
-    int votnumlower;
-    int votnumupper;
-    int numelections2try;
-    int utilnumlower;
-    int utilnumupper;
-    int real_world_based_utilities; /*LoadEldataFiles();RWBRDriver();*/
-
-    /*operation -- 2.Picture*/
-    /*operation -- 3.RandomTests*/
-    /*operation -- 4.ManualTally*/
-
-} ievs_config;
 
 char mylower[200];
 /* over writes mylower with lower case of input string */
@@ -65,63 +41,64 @@ static int ievs_handler(void *user, const char *section, const char *name,
     else if (MATCH("regrets", "outputfile"))
     {
         pconfig->outputfile = strdup(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "honfraclower"))
     {
         pconfig->honfraclower = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "honfracupper"))
     {
         pconfig->honfracupper = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "candnumlower"))
     {
         pconfig->candnumlower = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "candnumupper"))
     {
         pconfig->candnumupper = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "votnumlower"))
     {
         pconfig->votnumlower = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "votnumupper"))
     {
         pconfig->votnumupper = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "numelections2try"))
     {
         pconfig->numelections2try = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "utilnumlower"))
     {
         pconfig->utilnumlower = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "utilnumupper"))
     {
         pconfig->utilnumupper = atoi(value);
+        pconfig->operation = 1;
     }
     else if (MATCH("regrets", "real_world_based_utilities"))
     {
         pconfig->real_world_based_utilities = atoi(value);
+        pconfig->operation = 1;
     }
-/* should be from an include file for here and IEVS.c */
-#define HTMLMODE 1         /*output adding "HTML table" formatting commands*/
-#define TEXMODE 2          /*output adding "TeX table" formatting commands*/
-#define NORMALIZEREGRETS 4 /*Output "normalized" Regrets so RandomWinner=1, SociallyBest=0. */
-#define SORTMODE 8         /*Output with voting methods in sorted order by increasing regrets.*/
-#define SHENTRUPVSR 16     /*Output "Shentrup normalized" Regrets so RandomWinner=0%, SociallyBest=100%. */
-#define OMITERRORBARS 32
-#define VBCONDMODE 64 /*vote-based condorcet winner agreement counts; versus true utility based CWs*/
-#define DOAGREETABLES 128
-#define ALLMETHS 256
-#define TOP10METHS 512
     else if (MATCH("regrets", "htmlmode"))
     {
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = HTMLMODE;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "texmode"))
@@ -129,6 +106,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = TEXMODE;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "normalizeregrets"))
@@ -136,6 +114,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = NORMALIZEREGRETS;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "sortmode"))
@@ -143,6 +122,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = SORTMODE;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "shentrupvsr"))
@@ -150,6 +130,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = SHENTRUPVSR;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "omiterrorbars"))
@@ -157,6 +138,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = OMITERRORBARS;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "vbcondmode"))
@@ -164,6 +146,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = VBCONDMODE;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "doagreetables"))
@@ -171,6 +154,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = DOAGREETABLES;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "allmeths"))
@@ -178,6 +162,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = ALLMETHS;
+        pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "top10meths"))
@@ -185,6 +170,7 @@ static int ievs_handler(void *user, const char *section, const char *name,
         if (strcmp(value, "true") == 0)
         {
             pconfig->BROutputMode = TOP10METHS;
+        pconfig->operation = 1;
         }
     }
     else
@@ -252,9 +238,10 @@ int dump_ini(int argc, char *argv[])
     return 0;
 }
 
-int do_ini(int argc, char *argv[])
+ievs_config config;
+
+ievs_config * do_ini(int argc, char *argv[])
 {
-    ievs_config config;
     config.seed = 12345;
     config.outputfile = NULL;
     config.BROutputMode = 0; /*init to zero*/
@@ -273,7 +260,7 @@ int do_ini(int argc, char *argv[])
     if (ini_parse(argv[1], ievs_handler, &config) < 0)
     {
         printf("Can't load '%s'\n", argv[1]);
-        return 1;
+        return (ievs_config*)1;
     }
     printf("-=-=-=-=-\n");
     printf("seed: %d, outputfile: %s\n", config.seed, config.outputfile);
@@ -283,9 +270,7 @@ int do_ini(int argc, char *argv[])
     printf("utilnum lower: %d, upper: %d\n", config.utilnumlower, config.utilnumupper);
     printf("numelections2try: %d, real_world_utils: %d\n", config.numelections2try, config.real_world_based_utilities);
     printf("BROutputMode: 0x%X\n", config.BROutputMode);
-    if (config.outputfile)
-        free((void *)config.outputfile);
-    return 0;
+    return &config;
 }
 
 int do_test_ini(int argc, char *argv[])
