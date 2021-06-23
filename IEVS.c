@@ -8028,10 +8028,26 @@ void restoreRedirectedIO()
 }
 
 /*************************** MAIN CODE: ***************************/
+#ifdef INCLUDE_INI_FILE
+int dump_ini(int argc, char *argv[]);
+int do_ini(int argc, char *argv[]);
+#endif
 
-void main()
+int main(int argc, char *argv[])
 {
     // WGA PrintConsts(); return;
+#ifdef INCLUDE_INI_FILE
+    if (argc <= 1)
+    {
+        printf("Usage: missing filename.ini\n");
+        return 1;
+    }
+    else
+    {
+        dump_ini(argc, argv);
+        return do_ini(argc, argv);
+    }
+#endif
 
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
