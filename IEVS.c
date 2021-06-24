@@ -8054,60 +8054,78 @@ int main(int argc, char *argv[])
     else
     {
         dump_ini(argc, argv);
-        ievs_config * config = do_ini(argc, argv);
+        ievs_config *config = do_ini(argc, argv);
         printf("sizeof config*: %d\n", sizeof(config));
-        if ((unsigned long long)config == 1) return 1;
+        if ((unsigned long long)config == 1)
+            return 1;
         /* else set variables and execute */
-	    printf("-0-0-0-0-\n");
-	    printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
-	    printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
-	    printf("candnum lower: %d, upper: %d\n", config->candnumlower, config->candnumupper);
-	    printf("votnum lower: %d, upper: %d\n", config->votnumlower, config->votnumupper);
-	    printf("utilnum lower: %d, upper: %d\n", config->utilnumlower, config->utilnumupper);
-	    printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
-	    printf("BROutputMode: 0x%X\n", config->BROutputMode);
-	
-	    seed = config->seed;
-	    if (config->operation == 1) {
-	
-		    strcpy(outfilename, config->outputfile);
-		    if (config->honfraclower >= 0){
-		        honfraclower = config->honfraclower;
-		    }
-		    if (config->honfracupper >= 0){
-		        honfracupper = config->honfracupper;
-		    }
-		    if (config->candnumlower >= 0){
-		        candnumlower = config->candnumlower;
-		    }
-		    if (config->candnumupper >= 0){
-		        candnumupper = config->candnumupper;
-		    }
-		    if (config->votnumlower >= 0){
-		        votnumlower = config->votnumlower;
-		    }
-		    if (config->votnumupper >= 0){
-		        votnumupper = config->votnumupper;
-		    }
-		    if (config->utilnumlower >= 0){
-		        utilnumlower = config->utilnumlower;
-		    }
-		    if (config->utilnumupper >= 0){
-		        utilnumupper = config->utilnumupper;
-		    }
-		    if (config->numelections2try >= 0){
-		        numelections2try = config->numelections2try;
-		    }
-		    if (config->BROutputMode >= 0){
-		        BROutputMode = config->BROutputMode;
-		    }
-		    if (config->real_world_based_utilities < 0){
+        printf("-0-0-0-0-\n");
+        printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
+        printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
+        printf("candnum lower: %d, upper: %d\n", config->candnumlower, config->candnumupper);
+        printf("votnum lower: %d, upper: %d\n", config->votnumlower, config->votnumupper);
+        printf("utilnum lower: %d, upper: %d\n", config->utilnumlower, config->utilnumupper);
+        printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
+        printf("BROutputMode: 0x%X\n", config->BROutputMode);
+
+        seed = config->seed;
+        if (config->operation == 1)
+        {
+
+            if (config->outputfile != NULL && strlen(config->outputfile) > 0)
+            {
+                strcpy(outfilename, config->outputfile);
+            }
+            if (config->honfraclower >= 0)
+            {
+                honfraclower = config->honfraclower;
+            }
+            if (config->honfracupper >= 0)
+            {
+                honfracupper = config->honfracupper;
+            }
+            if (config->candnumlower >= 0)
+            {
+                candnumlower = config->candnumlower;
+            }
+            if (config->candnumupper >= 0)
+            {
+                candnumupper = config->candnumupper;
+            }
+            if (config->votnumlower >= 0)
+            {
+                votnumlower = config->votnumlower;
+            }
+            if (config->votnumupper >= 0)
+            {
+                votnumupper = config->votnumupper;
+            }
+            if (config->utilnumlower >= 0)
+            {
+                utilnumlower = config->utilnumlower;
+            }
+            if (config->utilnumupper >= 0)
+            {
+                utilnumupper = config->utilnumupper;
+            }
+            if (config->numelections2try >= 0)
+            {
+                numelections2try = config->numelections2try;
+            }
+            if (config->BROutputMode >= 0)
+            {
+                BROutputMode = config->BROutputMode;
+            }
+            if (config->real_world_based_utilities < 0)
+            {
                 if (strlen(outfilename))
                     cloneAndRedirectTo(outfilename);
                 BRDriver();
                 if (strlen(outfilename))
                     restoreRedirectedIO();
-            } else {
+            }
+            else
+            {
                 printf("Real-world-based.\n");
                 if (strlen(outfilename))
                     cloneAndRedirectTo(outfilename);
@@ -8116,14 +8134,19 @@ int main(int argc, char *argv[])
                 if (strlen(outfilename))
                     restoreRedirectedIO();
             }
-        } else if (config->operation == 2) {
-        } else if (config->operation == 3) {
-        } else if (config->operation == 4) {
+        }
+        else if (config->operation == 2)
+        {
+        }
+        else if (config->operation == 3)
+        {
+        }
+        else if (config->operation == 4)
+        {
         }
         return 0;
     }
 #endif
-
 
     printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
     printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);
@@ -8395,7 +8418,7 @@ int main(int argc, char *argv[])
                         scanf("%d %d", &utilnumlower, &utilnumupper);
                         if (utilnumlower < 0)
                             utilnumlower = 0;
-                        if (utilnumupper >= 15)
+                        if (utilnumupper >= 15) //FIXME WGA NumUtilGens? should replace '15' it is currently defined as '11'!!!
                             utilnumupper = 15;
                         printf("Utility gens  [%d, %d] chosen.\n", utilnumlower, utilnumupper);
                         /**** if ??? 
