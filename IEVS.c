@@ -8033,7 +8033,7 @@ void restoreRedirectedIO()
 
 int main(int argc, char *argv[])
 {
-    // WGA 
+    // WGA
     PrintConsts(); //return;
 
     uint seed, choice, ch2, ch3;
@@ -8183,7 +8183,7 @@ int main(int argc, char *argv[])
         case (1):
             printf("Answer a sequence of questions indicating what output format you want for\n");
             printf("the regret tables:\n");
-            printf("0. Simulation output file name? enter name or \'none\'<return> is not desired.\n");
+            printf("0. Simulation output file name? enter name or \'none\'<return> if not desired.\n");
             fflush(stdout);
             scanf("%s", outfilename);
             if (!strcmp("none", outfilename))
