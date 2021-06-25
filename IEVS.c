@@ -332,8 +332,8 @@ void PrintNSpaces(int N)
 }
 /****** convenient constants: *******/
 #define BIGINT 0x7FFFFFFF
-//#define MAXUINT UINT_MAX
-#define MAXUINT ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255)))
+#define MAXUINT UINT_MAX
+//#define MAXUINT ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255)))
 /* defn works on 8,16,32, and 64-bit machines */
 
 uint32 BLC32x[60]; /* 32*60=1920 bits of state. Must be nonzero mod P. */
@@ -8035,6 +8035,7 @@ int main(int argc, char *argv[])
 {
     // WGA
     PrintConsts(); //return;
+    assert(MAXUINT == ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255))));
 
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
@@ -8046,12 +8047,7 @@ int main(int argc, char *argv[])
     brdata B; // FIXME malloc brdata WGA
 
 #ifdef INCLUDE_INI_FILE
-    if (argc <= 1)
-    {
-        printf("Usage: missing filename.ini\n");
-        return 1;
-    }
-    else
+    if (argc == 2)
     {
         dump_ini(argc, argv);
         ievs_config *config = do_ini(argc, argv);
