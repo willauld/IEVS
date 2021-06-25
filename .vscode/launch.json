@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\IEVS.exe",
-            "args": [ /*-pg -DINCLUDE_INI_FILE .\handleini.c .\ini\ini.c*/],
+            "args": [ "ievs.ini" ],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
