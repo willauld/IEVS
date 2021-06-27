@@ -13,6 +13,7 @@
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #define NO_OLDNAMES
@@ -8035,7 +8036,7 @@ int main(int argc, char *argv[])
 {
     // WGA
     PrintConsts(); //return;
-    assert(MAXUINT == ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255))));
+    //assert(MAXUINT == ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255))));
 
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
