@@ -16,6 +16,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <time.h>
 #define NO_OLDNAMES
 #include <math.h>
 #include <stdint.h>
@@ -28,6 +29,7 @@
 #include <process.h>
 #else
 #include <sys/time.h>
+#include <limits.h>
 #include <unistd.h>
 #endif
 #ifdef INCLUDE_INI_FILE
@@ -8052,7 +8054,7 @@ int main(int argc, char *argv[])
     {
         dump_ini(argc, argv);
         ievs_config *config = do_ini(argc, argv);
-        printf("sizeof config*: %d\n", sizeof(config));
+        printf("sizeof config*: %ld\n", sizeof(config));
         if ((unsigned long long)config == 1)
             return 1;
         /* else set variables and execute */
