@@ -6,10 +6,12 @@
             "label": "build",
             "type": "shell",
             "command": "make",
+            "args": [ "all" ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+            "problemMatcher": ["$gcc"],
             "problemMatcher": "$gcc"
         }
     ],
