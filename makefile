@@ -18,7 +18,7 @@ ievs.exe: IEVS.c
 all: ievs.exe ievs_ini.exe a.exe
 
 a.exe: ievs.exe
-	$(CP) ievs.exe a.exe
+	$(CP) ievs_ini.exe a.exe
 
 handleini.c: handleini.h
 
@@ -31,6 +31,6 @@ version:
 	gcc --version
 
 clean: 
-	-$(RM) *.exe
+	-$(RM) -f ievs.exe ievs_ini.exe a.exe
 
 
