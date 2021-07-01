@@ -8036,8 +8036,7 @@ void restoreRedirectedIO()
 
 int main(int argc, char *argv[])
 {
-    // WGA
-    PrintConsts(); //return;
+    // WGA PrintConsts(); //return;
     //assert(MAXUINT == ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255))));
 
     uint seed, choice, ch2, ch3;
@@ -8047,7 +8046,7 @@ int main(int argc, char *argv[])
     real cscore;
     char fname[100];
     char outfilename[100];
-    brdata B; // FIXME malloc brdata WGA
+    brdata B;
 
 #ifdef INCLUDE_INI_FILE
     if (argc == 2)
@@ -8067,7 +8066,10 @@ int main(int argc, char *argv[])
         printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
         printf("BROutputMode: 0x%X\n", config->BROutputMode);
 
-        seed = config->seed;
+        seed = config->seed; //0 causes machine to auto-generate from TimeOfDay
+        InitRand(seed);
+        BuildLCMfact();
+
         if (config->operation == 1)
         {
 
@@ -8139,9 +8141,20 @@ int main(int argc, char *argv[])
         }
         else if (config->operation == 3)
         {
+            printf("Test of randgen & other tests\n");
+            TestsOfRand();
+            printf("\nTest edata structure:\n");
+            fflush(stdout);
+            B.NumVoters = 6;
+            B.NumCands = 5;
+            B.NumElections = 1;
+            B.IgnoranceAmplitude = 0.001;
+            TestEDataStructs(&B);
         }
         else if (config->operation == 4)
         {
+            printf("Tally an election with votes you enter (NOT IMPLEMENTED HERE - try\n");
+            printf("http://RangeVoting.org/VoteCalc.html)\n");
         }
         return 0;
     }

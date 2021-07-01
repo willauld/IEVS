@@ -97,81 +97,85 @@ static int ievs_handler(void *user, const char *section, const char *name,
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = HTMLMODE;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= HTMLMODE;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "texmode"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = TEXMODE;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= TEXMODE;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "normalizeregrets"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = NORMALIZEREGRETS;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= NORMALIZEREGRETS;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "sortmode"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = SORTMODE;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= SORTMODE;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "shentrupvsr"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = SHENTRUPVSR;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= SHENTRUPVSR;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "omiterrorbars"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = OMITERRORBARS;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= OMITERRORBARS;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "vbcondmode"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = VBCONDMODE;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= VBCONDMODE;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "doagreetables"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = DOAGREETABLES;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= DOAGREETABLES;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "allmeths"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = ALLMETHS;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= ALLMETHS;
+            pconfig->operation = 1;
         }
     }
     else if (MATCH("regrets", "top10meths"))
     {
         if (strcmp(value, "true") == 0)
         {
-            pconfig->BROutputMode = TOP10METHS;
-        pconfig->operation = 1;
+            pconfig->BROutputMode |= TOP10METHS;
+            pconfig->operation = 1;
         }
+    }
+    else if (MATCH("selftests", "do"))
+    {
+        pconfig->operation = 3;
     }
     else
     {
@@ -240,11 +244,11 @@ int dump_ini(int argc, char *argv[])
 
 ievs_config config;
 
-ievs_config * do_ini(int argc, char *argv[])
+ievs_config *do_ini(int argc, char *argv[])
 {
-    config.seed = 12345;
+    config.seed = 0; //0 causes machine to auto-generate from TimeOfDay
     config.outputfile = NULL;
-    config.BROutputMode = 0; /*init to zero*/
+    config.BROutputMode |= 0; /*init to zero*/
     /* below init to -1 to signify unset */
     config.honfraclower = -1;
     config.honfracupper = -1;
@@ -260,7 +264,7 @@ ievs_config * do_ini(int argc, char *argv[])
     if (ini_parse(argv[1], ievs_handler, &config) < 0)
     {
         printf("Can't load '%s'\n", argv[1]);
-        return (ievs_config*)1;
+        return (ievs_config *)1;
     }
     printf("-=-=-=-=-\n");
     printf("seed: %d, outputfile: %s\n", config.seed, config.outputfile);

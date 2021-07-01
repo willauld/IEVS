@@ -33,9 +33,10 @@ typedef struct
 
     /*operation -- 2.Picture*/
     /*operation -- 3.RandomTests*/
+    // do = now
     /*operation -- 4.ManualTally*/
 
 } ievs_config;
 
 int dump_ini(int argc, char *argv[]);
-ievs_config * do_ini(int argc, char *argv[]);
+ievs_config *do_ini(int argc, char *argv[]);
