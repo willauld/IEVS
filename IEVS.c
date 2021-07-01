@@ -8051,6 +8051,7 @@ int main(int argc, char *argv[])
 #ifdef INCLUDE_INI_FILE
     if (argc == 2)
     {
+        ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
         dump_ini(argc, argv);
         ievs_config *config = do_ini(argc, argv);
         printf("sizeof config*: %ld\n", sizeof(config));
