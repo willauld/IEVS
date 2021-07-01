@@ -1,4 +1,4 @@
-#rm ./test01.out
+
 ./a.exe test02ini.ini > ./test02ini.out 
 #<<!
 #12345
@@ -19,7 +19,7 @@
 #1
 #0 1
 #!
-diff -s ./test02.out ./test02.good
+diff -s ./test02ini.out ./test02.good
 #
 # walk through the program with the above input
 #
