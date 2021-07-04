@@ -2,7 +2,10 @@
  * Warren D Smith's IEVS program
  * 
  * Needs at least 4m for the stack. This requires link args:
- *      gcc "-Wl,--stack,4194304" .\IEVS.c 
+ *      gcc .\IEVS.c -lm -o ievs.exe 
+ *              OR
+ *      gcc -DINCLUDE_INI_FILE IEVS.c handleini.c ini/ini.c -lm -o ievs_ini.exe
+ * 
  */
 #define TRUE (0 < 1)
 #define FALSE (1 < 0)
