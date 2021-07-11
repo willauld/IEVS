@@ -7976,14 +7976,14 @@ int cloneAndRedirectTo(char *file_name)
     strcat(strcpy(file_out, file_name), ".out");
     strcat(strcpy(file_err, file_name), ".err");
 
-    tout = open(file_out, O_RDWR | O_CREAT | O_APPEND, 0600);
+    tout = open(file_out, O_RDWR | O_CREAT, 0600);
     if (tout == -1)
     {
         perror(strcat(strcpy(errmsg, "opening "), file_out));
         return 255;
     }
 
-    terr = open(file_err, O_RDWR | O_CREAT | O_APPEND, 0600);
+    terr = open(file_err, O_RDWR | O_CREAT, 0600);
     if (terr == -1)
     {
         perror(strcat(strcpy(errmsg, "opening "), file_err));
@@ -8064,6 +8064,7 @@ int main(int argc, char *argv[])
             return 1;
         /* else set variables and execute */
         printf("-0-0-0-0-\n");
+        printf("INI_FILE: %s\n", argv[1]);
         printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
         printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
         printf("candnum lower: %d, upper: %d\n", config->candnumlower, config->candnumupper);
