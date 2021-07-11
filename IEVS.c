@@ -197,13 +197,11 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define ALLMETHS 256
 #define TOP10METHS 512
 
-/******************** GENERAL PURPOSE routines having nothing to do with voting: ******/
+/********** GENERAL PURPOSE routines having nothing to do with voting: ******/
 
 int EulerPrimePoly(int n) { return (n * n + n + 41); } /*prime for n=0..39*/
-const int Pow2Primes[] = {2, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381};
-/** Greatest prime <=2^n. **/
 
-/******** Fns to deal with sets represented by bit-vectors in 1 machine word: ******/
+/** Fns to deal with sets represented by bit-vectors in 1 machine word: ****/
 bool SingletonSet(uint x) { return ((x & (x - 1)) == 0); } /*assumes non-empty*/
 bool StrictSuperset(uint x, uint y) { return ((x & y) == y && x != y); }
 bool EmptySet(uint x) { return (x == 0); }
@@ -1026,7 +1024,8 @@ uint128 MWCstateZ = 552;        //stores 128 bits of state
 uint64 Brent64state = 945;      //stores 64 bits of state
 uint64 VignaBl[2] = {656, 837}; //stores 128 bits of state
 
-/* The 8 bytes of x are permuted into reversed order: */ inline uint64 Bswap64(uint64 x) { return (__builtin_bswap64(x)); }
+/* The 8 bytes of x are permuted into reversed order: */
+inline uint64 Bswap64(uint64 x) { return (__builtin_bswap64(x)); }
 
 __attribute__((always_inline)) inline uint64 Rot64(uint64 x, uint h)
 { /* rotates 64-bit word x left (toward MS end) h hops */
@@ -7321,7 +7320,9 @@ void BRDriver(uint BROutputMode)
     int i, j, k, r, prind, whichhonlevel, UtilMeth, minc, coombrd, iglevel, TopMeth;
     uint ScenarioCount = 0;
     real scalefac, reb, maxc;
-    brdata B; //FIXME malloc brdata WGA
+    brdata B;
+    const int Pow2Primes[] = {2, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381};
+    /** Greatest prime <=2^n. **/
 
     for (iglevel = 0; iglevel < 5; iglevel++)
     {
