@@ -266,6 +266,7 @@ ievs_config *do_ini(int argc, char *argv[])
         printf("Can't load '%s'\n", argv[1]);
         return (ievs_config *)1;
     }
+#ifdef HANDLEINI_PRINT_INPUT
     printf("-=-=-=-=-\n");
     printf("seed: %d, outputfile: %s\n", config.seed, config.outputfile);
     printf("honfrac lower: %d, upper: %d\n", config.honfraclower, config.honfracupper);
@@ -274,6 +275,7 @@ ievs_config *do_ini(int argc, char *argv[])
     printf("utilnum lower: %d, upper: %d\n", config.utilnumlower, config.utilnumupper);
     printf("numelections2try: %d, real_world_utils: %d\n", config.numelections2try, config.real_world_based_utilities);
     printf("BROutputMode: 0x%X\n", config.BROutputMode);
+#endif
     return &config;
 }
 
