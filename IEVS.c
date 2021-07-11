@@ -8050,6 +8050,9 @@ int main(int argc, char *argv[])
     brdata B;
     uint BROutputMode = 0;
 
+    fname[0] = '\0';
+    outfilename[0] = '\0';
+
 #ifdef INCLUDE_INI_FILE
     if (argc == 2)
     {
