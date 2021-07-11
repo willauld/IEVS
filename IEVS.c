@@ -196,7 +196,6 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define DOAGREETABLES 128
 #define ALLMETHS 256
 #define TOP10METHS 512
-uint BROutputMode = 0;
 
 /******************** GENERAL PURPOSE routines having nothing to do with voting: ******/
 
@@ -6288,7 +6287,6 @@ void PrintConsts()
     ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
     printf("ArtinPrime=%d\n", ARTINPRIME);
 
-    printf("BROutputMode=%x\n", BROutputMode);
     printf("MAXUINT: 0x%X\n", MAXUINT);
 
     if (sizeof(uint32) != 4)
@@ -7315,7 +7313,7 @@ real RegretData[MaxScenarios * NumMethods];
  *In IEVS 2.59 and above we include a summarizer so that if
  *you ignore the voluminous output, you still get a nice summary of it at 
  *the end:*/
-void BRDriver()
+void BRDriver(uint BROutputMode)
 {
     real BPStrength[NumMethods * NumMethods];
     bool VotMethods[NumMethods];
@@ -7648,7 +7646,7 @@ void BRDriver()
 }
 
 /* Like BRDriver only based on the real world election dataset: */
-void RWBRDriver()
+void RWBRDriver(uint BROutputMode)
 {
     real BPStrength[NumMethods * NumMethods];
     bool VotMethods[NumMethods];
@@ -8050,14 +8048,15 @@ int main(int argc, char *argv[])
     char fname[100];
     char outfilename[100];
     brdata B;
+    uint BROutputMode = 0;
 
 #ifdef INCLUDE_INI_FILE
     if (argc == 2)
     {
         ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
-        dump_ini(argc, argv);
+        //dump_ini(argc, argv);
         ievs_config *config = do_ini(argc, argv);
-        printf("sizeof config*: %ld\n", sizeof(config));
+        //printf("sizeof config*: %ld\n", sizeof(config));
         if ((unsigned long long)config == 1)
             return 1;
         /* else set variables and execute */
@@ -8125,7 +8124,7 @@ int main(int argc, char *argv[])
             {
                 if (strlen(outfilename))
                     cloneAndRedirectTo(outfilename);
-                BRDriver();
+                BRDriver(BROutputMode);
                 if (strlen(outfilename))
                     restoreRedirectedIO();
             }
@@ -8135,7 +8134,7 @@ int main(int argc, char *argv[])
                 if (strlen(outfilename))
                     cloneAndRedirectTo(outfilename);
                 LoadEldataFiles();
-                RWBRDriver();
+                RWBRDriver(BROutputMode);
                 if (strlen(outfilename))
                     restoreRedirectedIO();
             }
@@ -8447,14 +8446,14 @@ int main(int argc, char *argv[])
                     }
                     if (strlen(outfilename))
                         cloneAndRedirectTo(outfilename);
-                    BRDriver();
+                    BRDriver(BROutputMode);
                     if (strlen(outfilename))
                         restoreRedirectedIO();
                     break;
                 case (2):
                     printf("Real-world-based.\n");
                     LoadEldataFiles();
-                    RWBRDriver();
+                    RWBRDriver(BROutputMode);
                     break;
                 default:
                     printf("Wrong choice %d, moron - try again\n", ch2);
