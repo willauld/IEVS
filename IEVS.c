@@ -282,7 +282,7 @@ uint GCD(uint a, uint b)
     }
 }
 
-uint LCMfact[32];
+uint LCMfact[32]; /* Constant after init by BuildLCMfact() */
 
 void BuildLCMfact()
 {
