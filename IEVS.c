@@ -306,7 +306,7 @@ void BuildLCMfact()
 i.e. these are primes which have 2 as a primitive root.
 This routine finds the greatest Artin prime P with P<=x.  (Not intended to be fast.)
   *******************************************/
-uint ARTINPRIME;
+uint ARTINPRIME; /* Constant set top of main() by FindArtinPrime() only used in EMETH WoodallDAC() */
 uint FindArtinPrime(uint x)
 {
     uint j, p, k;
@@ -6283,7 +6283,6 @@ void PrintConsts()
     printf("NumCoreMethods=%d\t", NumCoreMethods);
     printf("TRUE=%d\t", (int)TRUE);
     printf("FALSE=%d\n", (int)FALSE);
-    ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
     printf("ArtinPrime=%d\n", ARTINPRIME);
 
     printf("MAXUINT: 0x%X\n", MAXUINT);
@@ -8053,11 +8052,15 @@ int main(int argc, char *argv[])
 
     fname[0] = '\0';
     outfilename[0] = '\0';
+    ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
+    printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
+    printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);
+    fflush(stdout);
+    PrintConsts();
 
 #ifdef INCLUDE_INI_FILE
     if (argc == 2)
     {
-        ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
         //dump_ini(argc, argv);
         ievs_config *config = do_ini(argc, argv);
         //printf("sizeof config*: %ld\n", sizeof(config));
@@ -8168,10 +8171,6 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
-    printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);
-    fflush(stdout);
-    PrintConsts();
     printf("\nPlease enter random seed (0 causes machine to auto-generate from TimeOfDay)\n");
     fflush(stdout);
     scanf("%u", &seed);
