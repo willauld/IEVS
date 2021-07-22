@@ -387,12 +387,16 @@ uint32 BigLinCong32()
     uint32 y[120];
     int i;
     uint64 u;
+    uint32 rval;
 
-    if (BLC32NumLeft == 0)
+#pragma omp shared(BLC32x, BLC32NumLeft) lastprivate(rval)
+#pragma omp critical
     {
-        /* Need to refill BLC32x[0..59] with 60 new random numbers: */
+        if (BLC32NumLeft == 0)
+        {
+            /* Need to refill BLC32x[0..59] with 60 new random numbers: */
 
-        /****************************************************************
+            /****************************************************************
  * If BLC32x[0..59] is the digits, LS..MS, of a number in base 2^w,
  * then the following code fragment puts A times that number 
  * in y[0..119].  Here
@@ -403,143 +407,108 @@ uint32 BigLinCong32()
 #define A1 (uint64)1284507170
 #define A2 (uint64)847441413
 #define A3 (uint64)650134147
-        for (i = 0; i < 3; i++)
-        {
-            y[i] = 0;
-        }
-        u = 0;
-        for (/*i=3*/; i < 44; i++)
-        {
-            u += A1 * BLC32x[i - 3];
+            for (i = 0; i < 3; i++)
+            {
+                y[i] = 0;
+            }
+            u = 0;
+            for (/*i=3*/; i < 44; i++)
+            {
+                u += A1 * BLC32x[i - 3];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=44*/; i < 59; i++)
+            {
+                u += A1 * BLC32x[i - 3];
+                u += A2 * BLC32x[i - 44];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=59*/; i < 60 + 3; i++)
+            {
+                u += A1 * BLC32x[i - 3];
+                u += A2 * BLC32x[i - 44];
+                u += A3 * BLC32x[i - 59];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=60+3*/; i < 60 + 44; i++)
+            {
+                u += A2 * BLC32x[i - 44];
+                u += A3 * BLC32x[i - 59];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=60+44*/; i < 60 + 59; i++)
+            {
+                u += A3 * BLC32x[i - 59];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            /*i=60+59=119*/
             y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=44*/; i < 59; i++)
-        {
-            u += A1 * BLC32x[i - 3];
-            u += A2 * BLC32x[i - 44];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=59*/; i < 60 + 3; i++)
-        {
-            u += A1 * BLC32x[i - 3];
-            u += A2 * BLC32x[i - 44];
-            u += A3 * BLC32x[i - 59];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=60+3*/; i < 60 + 44; i++)
-        {
-            u += A2 * BLC32x[i - 44];
-            u += A3 * BLC32x[i - 59];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=60+44*/; i < 60 + 59; i++)
-        {
-            u += A3 * BLC32x[i - 59];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        /*i=60+59=119*/
-        y[i] = lohalf(u);
 #undef A1
 #undef A2
 #undef A3
-        /*************************************************************
+            /*************************************************************
  * If y[0..119] is the digits, LS..MS, of a number in base 2^w,
  * then the following code fragment replaces that number with
  * its remainder mod P in y[0..59]  (conceivably the result will
  * be >P, but this does not matter; it will never be >=2^(w*60)).
  **************************************************************/
-        u = 1; /*borrow*/
-#define AllF 0xffffffff
-        /* Step 1: y[0..72] = y[0..59] + y[60..119]shift12 - y[60..119]: */
-        for (i = 0; i < 12; i++)
-        {
-            u += y[i];
-            u += (uint64)~y[60 + i];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=12*/; i < 60; i++)
-        {
-            u += y[i];
-            u += y[48 + i];
-            u += (uint64)~y[60 + i];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=60*/; i < 72; i++)
-        {
-            u += AllF;
-            u += y[48 + i];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        assert(u > 0);
-        y[72] = (uint32)(u - 1); /*unborrow*/
-
-        /*  Step 2: y[0..60] = y[0..59] + y[60..72]shift12  - y[60..72]: */
-        u = 1; /*borrow*/
-        for (i = 0; i < 12; i++)
-        {
-            u += y[i];
-            u += (uint64)~y[60 + i];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        /*i=12*/
-        u += y[i] + y[48 + i];
-        u += (uint64)~y[60 + i];
-        y[i] = lohalf(u);
-        u = u >> 32;
-        i++;
-        for (/*i=13*/; i < 25; i++)
-        {
-            u += AllF;
-            u += y[i];
-            u += y[48 + i];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        for (/*i=25*/; i < 60; i++)
-        {
-            u += AllF;
-            u += y[i];
-            y[i] = lohalf(u);
-            u = u >> 32;
-        }
-        /*i=60*/
-        assert(u > 0);
-        y[i] = (uint32)(u - 1); /*unborrow*/
-
-        /*It is rare that any iterations of this loop are needed:*/
-        while (y[60] != 0)
-        {
-            printf("rare loop\n");
-            /*Step 3+:  y[0..60] = y[0..59] + y[60]shift12 - y[60]:*/
             u = 1; /*borrow*/
-            u += y[0];
-            u += (uint64)~y[60];
-            y[0] = lohalf(u);
-            u = u >> 32;
-            for (i = 1; i < 12; i++)
+#define AllF 0xffffffff
+            /* Step 1: y[0..72] = y[0..59] + y[60..119]shift12 - y[60..119]: */
+            for (i = 0; i < 12; i++)
+            {
+                u += y[i];
+                u += (uint64)~y[60 + i];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=12*/; i < 60; i++)
+            {
+                u += y[i];
+                u += y[48 + i];
+                u += (uint64)~y[60 + i];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=60*/; i < 72; i++)
             {
                 u += AllF;
+                u += y[48 + i];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            assert(u > 0);
+            y[72] = (uint32)(u - 1); /*unborrow*/
+
+            /*  Step 2: y[0..60] = y[0..59] + y[60..72]shift12  - y[60..72]: */
+            u = 1; /*borrow*/
+            for (i = 0; i < 12; i++)
+            {
                 u += y[i];
+                u += (uint64)~y[60 + i];
                 y[i] = lohalf(u);
                 u = u >> 32;
             }
             /*i=12*/
-            u += AllF;
-            u += y[i];
-            u += y[60];
+            u += y[i] + y[48 + i];
+            u += (uint64)~y[60 + i];
             y[i] = lohalf(u);
             u = u >> 32;
             i++;
-            for (/*i=13*/; i < 60; i++)
+            for (/*i=13*/; i < 25; i++)
+            {
+                u += AllF;
+                u += y[i];
+                u += y[48 + i];
+                y[i] = lohalf(u);
+                u = u >> 32;
+            }
+            for (/*i=25*/; i < 60; i++)
             {
                 u += AllF;
                 u += y[i];
@@ -549,21 +518,58 @@ uint32 BigLinCong32()
             /*i=60*/
             assert(u > 0);
             y[i] = (uint32)(u - 1); /*unborrow*/
-        }
+
+            /*It is rare that any iterations of this loop are needed:*/
+            while (y[60] != 0)
+            {
+                printf("rare loop\n");
+                /*Step 3+:  y[0..60] = y[0..59] + y[60]shift12 - y[60]:*/
+                u = 1; /*borrow*/
+                u += y[0];
+                u += (uint64)~y[60];
+                y[0] = lohalf(u);
+                u = u >> 32;
+                for (i = 1; i < 12; i++)
+                {
+                    u += AllF;
+                    u += y[i];
+                    y[i] = lohalf(u);
+                    u = u >> 32;
+                }
+                /*i=12*/
+                u += AllF;
+                u += y[i];
+                u += y[60];
+                y[i] = lohalf(u);
+                u = u >> 32;
+                i++;
+                for (/*i=13*/; i < 60; i++)
+                {
+                    u += AllF;
+                    u += y[i];
+                    y[i] = lohalf(u);
+                    u = u >> 32;
+                }
+                /*i=60*/
+                assert(u > 0);
+                y[i] = (uint32)(u - 1); /*unborrow*/
+            }
 #undef AllF
 #undef lohalf
 
-        /* Copy y[0..59] into BLC32x[0..59]: */
-        for (i = 0; i < 60; i++)
-        {
-            BLC32x[i] = y[i];
+            /* Copy y[0..59] into BLC32x[0..59]: */
+            for (i = 0; i < 60; i++)
+            {
+                BLC32x[i] = y[i];
+            }
+            /*printf("%u\n", BLC32x[44]);*/
+            BLC32NumLeft = 60;
         }
-        /*printf("%u\n", BLC32x[44]);*/
-        BLC32NumLeft = 60;
-    }
-    /* (Else) We have random numbers left, so return one: */
-    BLC32NumLeft--;
-    return BLC32x[BLC32NumLeft];
+        /* (Else) We have random numbers left, so return one: */
+        BLC32NumLeft--;
+        rval = BLC32x[BLC32NumLeft];
+    } // end pragma critical
+    return rval;
 }
 
 void testbiglincong()
@@ -785,6 +791,7 @@ real RandNormal()
     real w, x1;
     static real x2;
     static bool ready = FALSE;
+#pragma omp threadprivate(x2, ready)
     if (ready)
     {
         ready = FALSE;
@@ -1018,11 +1025,11 @@ void GenRandWackyArr(int N, real Arr[])
 #define uint128 __uint128_t
 
 /******** Some psu-random number generators by Warren D. Smith **********/
-
-uint128 QCGstateS = 873;        //stores 128 bits of state
-uint128 MWCstateZ = 552;        //stores 128 bits of state
-uint64 Brent64state = 945;      //stores 64 bits of state
-uint64 VignaBl[2] = {656, 837}; //stores 128 bits of state
+////static
+////uint128 QCGstateS = 873;        //stores 128 bits of state
+////uint128 MWCstateZ = 552;   //stores 128 bits of state
+////uint64 Brent64state = 945; //stores 64 bits of state
+////uint64 VignaBl[2] = {656, 837}; //stores 128 bits of state
 
 /* The 8 bytes of x are permuted into reversed order: */
 inline uint64 Bswap64(uint64 x) { return (__builtin_bswap64(x)); }
@@ -1046,6 +1053,9 @@ On David Blackman's system: runtime 12 clock cycles, or 7 clocks if inlined.
 Passes PracRand at 1 Tbyte.   *********************************************/
 uint64 SMWC64a()
 {
+    static uint128 MWCstateZ = 552; //stores 128 bits of state
+#pragma omp threadprivate(MWCstateZ)
+
     uint64 c = MWCstateZ >> 64; //hi half
     uint64 x = MWCstateZ;       //lo half
     MWCstateZ = x;
@@ -1065,6 +1075,9 @@ For that reason I have added optional EXTRA_JUICE stages as postprocessing to th
 uint64 PQCG64()
 {
     uint64 x, y;
+    static uint128 QCGstateS = 873; //stores 128 bits of state
+#pragma omp threadprivate(QCGstateS)
+
     y = QCGstateS >> 64;          //hi 64-bit half of 128-bit state
     x = QCGstateS;                //lo half
 #define b U64(0x56d59264c70b44db) //constants
@@ -1101,6 +1114,9 @@ On David Blackman's system: runtime 12 clock cycles, or 7 clocks if inlined, or 
 Fails randomness tests (and the very fact it is GF2-linear forces it to fail tests), hence should not be used standalone: ***********************************/
 uint64 Brent64()
 {
+    static uint64 Brent64state = 945; //stores 64 bits of state
+#pragma omp threadprivate(Brent64state)
+
     Brent64state ^= Brent64state << 7;
     Brent64state ^= Brent64state >> 9;
     return (Brent64state);
@@ -1110,6 +1126,8 @@ uint64 Brent64()
      Period=2^128-1.  Runtime<1.47nanosec on my system (4.3 clock cycles). ****/
 uint64 Xoroshiro128()
 {
+    static uint64 VignaBl[2] = {656, 837}; //stores 128 bits of state
+#pragma omp threadprivate(VignaBl)
     const uint64 s0 = VignaBl[0];
     uint64 s1 = VignaBl[1];
     const uint64 result = s0 + s1;
@@ -2199,6 +2217,8 @@ int TrueCW;          /*cond winner based on undistorted true utilities; negative
 int CopelandWinner;
 int CopeWinOnlyWinner;
 int SmithIRVwinner;
+#pragma omp threadprivate(PlurWinner, AntiPlurWinner, PSecond, RSecond, ASecond, ApprovalWinner, IRVwinner, SmithWinner, RandWinner, SchwartzWinner, RangeWinner, BordaWinner, WorstWinner, BestWinner, RandomUncoveredMemb, RangeGranul, StarGranul, IRVTopLim, CondorcetWinner, TrueCW, CopelandWinner, CopeWinOnlyWinner, SmithIRVwinner)
+
 uint PlurVoteCount[MaxNumCands];
 uint AntiPlurVoteCount[MaxNumCands];
 uint DabaghVoteCount[MaxNumCands];
@@ -2267,6 +2287,8 @@ int Hroot[MaxNumCands];
 uint WoodHashCount[3 * MaxNumCands * MaxNumVoters], WoodHashSet[3 * MaxNumCands * MaxNumVoters];
 uint WoodSetPerm[3 * MaxNumCands * MaxNumVoters];
 uint IBeat[MaxNumCands];
+
+#pragma omp threadprivate(PlurVoteCount, AntiPlurVoteCount, DabaghVoteCount, StarNdefMatrix, StarNVoteCount, VFAVoteCount, RdVoteCount, FavListNext, HeadFav, WinCount, DrawCt, CopeScore, LossCount, SimmVotesAgainst, BeatPathStrength, ArmyBPS, ApprovalVoteCount, UncAAOF, MCAVoteCount, RangeVoteCount, SumNormedRating, RangeNVoteCount, CCumVoteCount, MedianRating, CScoreVec, MedianRank, CRankVec, BordaVoteCount, NansonVoteCount, NauruVoteCount, HeismanVoteCount, BaseballVoteCount, SumOfDefeatMargins, WorstDefeatMargin, SSworstDefeatMargin, RayDefeatMargin, RayBeater, ARVictMargin, ARchump, UtilitySum, UtilityRootSum, RandCandPerm, MajApproved, Eliminated, MDdisquald, BSSmithMembs, SmithMembs, UncoveredSt, SchwartzMembs, IFav, NauruWt, BaseballWt, PairApproval, SinkRat, SinkMat, CoverMatrix, EigVec, Rmark, rRmark, summ, Tpath, Hpotpar, Hpar, Hroot, WoodHashCount, WoodSetPerm, IBeat)
 
 void InitCoreElState()
 { /*can use these flags to tell if Plurality() etc have been run*/
@@ -6079,6 +6101,7 @@ UTGEN GenRealWorldUtils(edata *E)
 { /** based on Tideman election dataset **/
     uint ff, y, x, V, C, VV;
     static int WhichElection = 0, offset = 0;
+#pragma omp threadprivate(WhichElection, offset)
     real scalefac;
     if (WhichElection >= NumElectionsLoaded)
     {
@@ -6303,13 +6326,13 @@ void PrintConsts()
 /******* heap management: **********
  * Very limited heap management for moving a limited number of object types
  * off the stack. In particular edata is a large structure we want to handle 
- * with these routines. May add others as needed. 
+ * with these routines. May add others structures as needed. 
  * 
- * For now assume only one size object that may be allocated and freed many
+ * For now, assume only one size object that may be allocated and freed many
  * times.
  * 
  * void * heapalloc(size_t)
- * void free(void*)
+ * void heapfree(void*)
  * 
  */
 void *freelist = NULL; // assume free list only needs 1 slot
@@ -6663,6 +6686,7 @@ uchar PaletteColorArray[64];
 void BogoPutc(uchar x, FILE *F)
 {
     static uint i = 0;
+#pragma omp threadprivate(i)
     if (i >= 64)
         i = 0;
     PaletteColorArray[i] = x;
@@ -7301,8 +7325,10 @@ real IgnLevels[] = {0.001, 0.01, 0.1, 1.0, -1.0};
 real RegretSum[NumMethods];
 int CoombCt[NumMethods];
 bool CoombElim[NumMethods];
-int MethPerm[NumMethods];
 int VMPerm[NumMethods];
+int MethPerm[NumMethods];
+
+// The following two arrays need special treatment for omp #pragma
 real RegretData[MaxScenarios * NumMethods];
 
 /*In IEVS 2.59 with NumElections=2999 and MaxNumVoters=3000, 
@@ -7315,13 +7341,15 @@ void BRDriver(uint BROutputMode)
 {
     real BPStrength[NumMethods * NumMethods];
     bool VotMethods[NumMethods];
-    bool CoombElim[NumMethods];
+    //bool CoombElim[NumMethods]; // WGA FIXME global and here! delete me
     int i, j, k, r, prind, whichhonlevel, UtilMeth, minc, coombrd, iglevel, TopMeth;
     uint ScenarioCount = 0;
     real scalefac, reb, maxc;
     brdata B;
     const int Pow2Primes[] = {2, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381};
     /** Greatest prime <=2^n. **/
+
+#pragma omp parallel for collapse(2) schedule(dynamic) default(none) shared(honfraclower, honfracupper, candnumlower, candnumupper, votnumlower, votnumupper, numelections2try, utilnumlower, utilnumupper, HonLevels, IgnLevels, Pow2Primes, BROutputMode, stdout, ) private(whichhonlevel, prind, B, VotMethods, TopMeth, reb, scalefac, i, j, r, MethPerm) firstprivate(ScenarioCount) lastprivate(ScenarioCount, RegretData)
 
     for (iglevel = 0; iglevel < 5; iglevel++)
     {
@@ -7650,7 +7678,7 @@ void RWBRDriver(uint BROutputMode)
 {
     real BPStrength[NumMethods * NumMethods];
     bool VotMethods[NumMethods];
-    bool CoombElim[NumMethods];
+    //bool CoombElim[NumMethods]; // WGA FIXME global and here! delete me
     int i, j, k, r, whichhonlevel, minc, coombrd, iglevel, TopMeth;
     uint ScenarioCount = 0;
     real scalefac, reb, maxc;
@@ -8067,7 +8095,7 @@ int main(int argc, char *argv[])
         if ((unsigned long long)config == 1)
             return 1;
         /* else set variables and execute */
-        printf("-0-0-0-0-\n");
+        printf("[-0-0-0-0-\n");
         printf("INI_FILE: %s\n", argv[1]);
         printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
         printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
@@ -8075,7 +8103,9 @@ int main(int argc, char *argv[])
         printf("votnum lower: %d, upper: %d\n", config->votnumlower, config->votnumupper);
         printf("utilnum lower: %d, upper: %d\n", config->utilnumlower, config->utilnumupper);
         printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
+        printf("Operation/Section: %d\n", config->operation);
         printf("BROutputMode: 0x%X\n", config->BROutputMode);
+        printf("-0-0-0-0-]\n");
 
         seed = config->seed; //0 causes machine to auto-generate from TimeOfDay
         InitRand(seed);
