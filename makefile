@@ -6,7 +6,7 @@ MPI_FLAGS := -DDO_MPI
 OPENMP_FLAGS = -fopenmp
 LD_FLAGS := -lm
 #LD_FLAGS := -lm -lgomp
-#C_FLAGS := -Wall
+C_FLAGS := -Wall
 
 ifeq ($(OS),Windows_NT)
 	RM := del
