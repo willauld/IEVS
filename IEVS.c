@@ -38,6 +38,9 @@
 #ifdef INCLUDE_INI_FILE
 #include "handleini.h"
 #endif
+#ifdef DO_MPI
+#include <mpi.h>
+#endif
 
 /* #define NDEBUG    uncomment this line if want to turn off asserts for speed */
 // 5-1-2021 updating form .24 to .25 as we have been change the code WGA
@@ -182,7 +185,7 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define NumFastMethods ((uint)sizeof(methodsVector) / 16)
 #define NumMethods (NumFastMethods + NumSlowMethods)
 
-#define NumUtilGens 11 /*UTGEN the # in this line needs to change if add new util gen*/
+#define NumUtilGens 15 //was 11 WGA /*UTGEN the # in this line needs to change if add new util gen*/
 #define NumCoreMethods 12
 #define CWSPEEDUP FALSE /* TRUE causes it to be faster, but FALSE better for diagnosing bugs */
 
@@ -339,6 +342,10 @@ void PrintNSpaces(int N)
 //#define MAXUINT ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255)))
 /* defn works on 8,16,32, and 64-bit machines */
 
+#ifdef DO_MPI
+int num_threads;
+int my_id;
+#endif
 uint32 BLC32x[60]; /* 32*60=1920 bits of state. Must be nonzero mod P. */
 int BLC32NumLeft;
 
@@ -389,7 +396,11 @@ uint32 BigLinCong32()
     uint64 u;
     uint32 rval;
 
+#ifdef DO_MPI
+    if (BLC32NumLeft < num_threads)
+#else
     if (BLC32NumLeft == 0)
+#endif
     {
         /* Need to refill BLC32x[0..59] with 60 new random numbers: */
 
@@ -560,10 +571,18 @@ uint32 BigLinCong32()
             BLC32x[i] = y[i];
         }
         /*printf("%u\n", BLC32x[44]);*/
+#ifdef DO_MPI
+        BLC32NumLeft = 60 + my_id;
+#else
         BLC32NumLeft = 60;
+#endif
     }
     /* (Else) We have random numbers left, so return one: */
+#ifdef DO_MPI
+    BLC32NumLeft -= num_threads;
+#else
     BLC32NumLeft--;
+#endif
     rval = BLC32x[BLC32NumLeft];
     return rval;
 }
@@ -7313,7 +7332,9 @@ int votnumlower = 2, votnumupper = MaxNumVoters;
 int numelections2try = 59;
 int utilnumlower = 0, utilnumupper = NumUtilGens;
 real HonLevels[] = {1.0, 0.5, 0.0, 0.75, 0.25};
+int numHonLevels = sizeof(HonLevels) / sizeof(HonLevels[0]);
 real IgnLevels[] = {0.001, 0.01, 0.1, 1.0, -1.0};
+int numIgnLevels = sizeof(IgnLevels) / sizeof(IgnLevels[0]);
 real RegretSum[NumMethods];
 int CoombCt[NumMethods];
 bool CoombElim[NumMethods];
@@ -7341,12 +7362,40 @@ void BRDriver(uint BROutputMode)
     const int Pow2Primes[] = {2, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381};
     /** Greatest prime <=2^n. **/
 
-    for (iglevel = 0; iglevel < 5; iglevel++)
+#ifdef DO_MPI
+#define send_data_tag 2001
+#define return_data_tag 2002
+    int itrcount, start, end, master_thread;
+    int utilloops = 1 + utilnumupper - utilnumlower;
+    int ig_util_collapst_loops = numIgnLevels * utilloops;
+    int threads_with_extra = ig_util_collapst_loops % num_threads;
+    int thread_min_iteration = ig_util_collapst_loops / num_threads;
+    itrcount = -1;
+    master_thread = 0;
+    if (my_id < threads_with_extra)
     {
-        for (UtilMeth = 0; UtilMeth < NumUtilGens; UtilMeth++)
-            if (UtilMeth >= utilnumlower && UtilMeth <= utilnumupper)
+        start = my_id * (thread_min_iteration + 1);
+        end = start + thread_min_iteration + 1;
+    }
+    else
+    {
+        start = threads_with_extra * (thread_min_iteration + 1) + (my_id - threads_with_extra) * thread_min_iteration;
+        end = start + thread_min_iteration;
+    }
+#endif
+
+    for (iglevel = 0; iglevel < numIgnLevels; iglevel++)
+    {
+        for (UtilMeth = utilnumlower; UtilMeth <= utilnumupper; UtilMeth++)
+        {
+#ifdef DO_MPI
+            // Each thread takes a portion of the iteration of the above two
+            // loops collapsed into one.
+            itrcount++;
+            if (itrcount >= start && itrcount < end)
             {
-                for (whichhonlevel = 0; whichhonlevel < 5; whichhonlevel++)
+#endif
+                for (whichhonlevel = 0; whichhonlevel < numHonLevels; whichhonlevel++)
                 {
                     B.Honfrac = HonLevels[whichhonlevel];
                     if (B.Honfrac * 100 < honfracupper + 0.0001 &&
@@ -7513,154 +7562,207 @@ void BRDriver(uint BROutputMode)
                             }
                     } /*end for(whichhonlevel)*/
                 }
+#ifdef DO_MPI
             }
-    }
-    printf("==================SUMMARY OF NORMALIZED REGRET DATA FROM %d SCENARIOS=============\n",
-           ScenarioCount);
-    /* regret-sum, Coombs, and Schulze beatpaths used as summarizers 
-   * since are good for honest voters and cloneproof. */
-    printf("1. voting methods sorted by sum of (normalized so RandWinner=1) regrets (best first):\n");
-    fflush(stdout);
-    for (i = 0; i < NumMethods; i++)
-    {
-        RegretSum[i] = 0.0;
-    }
-    for (j = 0; j < (int)ScenarioCount; j++)
-    {
-        r = j * NumMethods;
-        for (i = 0; i < NumMethods; i++)
-        {
-            RegretSum[i] += RegretData[r + i];
+#endif
         }
     }
-    for (i = 0; i < NumMethods; i++)
+#ifdef DO_MPI
+    // here we want to collect the RegretData[] and ScenarioCount from each
+    // thread to combine into a single pair.
+    // ScenarioCount
+    // RegretData[];
+    MPI_Status status;
+    if (my_id != master_thread)
     {
-        VMPerm[i] = i;
-        MethPerm[i] = i;
-    }
-    RealPermShellSortUp(NumMethods, VMPerm, RegretSum);
-    for (i = 0; i < NumMethods; i++)
-    {
-        r = VMPerm[i];
-        printf("%d=", r);
-        PrintMethName(r, TRUE);
-        printf("\t %g\n", RegretSum[r]);
-    }
+        // non-master thread send its results to master
+        int elements_to_send = ScenarioCount * NumMethods;
+        printf("thread: %d, sending ScenarioCount: %d elements_to_send: %d\n",
+               my_id, ScenarioCount, elements_to_send);
 
-    printf("\n2. in order of elimination by the Coombs method (worst first):\n");
-    fflush(stdout);
-    for (i = NumMethods - 1; i >= 0; i--)
-    {
-        CoombElim[i] = FALSE;
+        MPI_Send(&ScenarioCount, 1, MPI_INT,
+                 master_thread, send_data_tag, MPI_COMM_WORLD);
+
+        MPI_Send(&elements_to_send, 1, MPI_INT,
+                 master_thread, send_data_tag, MPI_COMM_WORLD);
+
+        MPI_Send(&RegretData[0], elements_to_send, MPI_INT,
+                 master_thread, send_data_tag, MPI_COMM_WORLD);
     }
-    for (coombrd = NumMethods - 2; coombrd >= 0; coombrd--)
+    else
     {
-        for (i = NumMethods - 1; i >= 0; i--)
+        // master thread collects results, combines them and prints a summary.
+        int partial_scenario_count;
+        int elements_to_receive;
+        int master_elements = ScenarioCount * NumMethods;
+        int deposit_start = master_elements;
+        printf("master_thread, ScenarioCount: %d master_elements: %d\n", ScenarioCount, master_elements);
+        for (int i = 1; i < num_threads; i++)
         {
-            CoombCt[i] = 0;
+            MPI_Recv(&partial_scenario_count, 1, MPI_INT,
+                     i, send_data_tag, MPI_COMM_WORLD, &status);
+            ScenarioCount += partial_scenario_count;
+
+            MPI_Recv(&elements_to_receive, 1, MPI_INT,
+                     i, send_data_tag, MPI_COMM_WORLD, &status);
+
+            MPI_Recv(&RegretData[deposit_start], elements_to_receive,
+                     MPI_INT, i, send_data_tag, MPI_COMM_WORLD, &status);
+            deposit_start += elements_to_receive;
+
+            printf("master_thread receiving from thread: %d, par_scenario_count: %d elements_to_recieve: %d\n", i, partial_scenario_count, elements_to_receive);
+        }
+
+#endif
+        printf("==================SUMMARY OF NORMALIZED REGRET DATA FROM %d SCENARIOS=============\n",
+               ScenarioCount);
+        /* regret-sum, Coombs, and Schulze beatpaths used as summarizers 
+   * since are good for honest voters and cloneproof. */
+        printf("1. voting methods sorted by sum of (normalized so RandWinner=1) regrets (best first):\n");
+        fflush(stdout);
+        for (i = 0; i < NumMethods; i++)
+        {
+            RegretSum[i] = 0.0;
         }
         for (j = 0; j < (int)ScenarioCount; j++)
         {
-            k = -1;
             r = j * NumMethods;
-            maxc = -HUGE;
             for (i = 0; i < NumMethods; i++)
-                if (!CoombElim[i])
-                {
-                    if (RegretData[r + i] >= maxc)
-                    {
-                        maxc = RegretData[r + i];
-                        k = i;
-                    }
-                }
-            assert(k >= 0);
-            CoombCt[k]++;
-        }
-        k = -1;
-        j = -1;
-        for (i = 0; i < NumMethods; i++)
-        {
-            if (CoombCt[i] > k)
             {
-                k = CoombCt[i];
-                j = i;
+                RegretSum[i] += RegretData[r + i];
             }
         }
-        assert(j >= 0);
-        assert(!CoombElim[j]);
-        CoombElim[j] = TRUE;
-        printf("%d=", j);
-        PrintMethName(j, TRUE);
-        printf("\n");
-        fflush(stdout);
-    }
-    for (i = 0; i < NumMethods; i++)
-        if (!CoombElim[i])
+        for (i = 0; i < NumMethods; i++)
         {
-            printf("Coombs Winner: %d=", i);
-            PrintMethName(i, TRUE);
-            printf("\n");
-            fflush(stdout);
-            break;
+            VMPerm[i] = i;
+            MethPerm[i] = i;
+        }
+        RealPermShellSortUp(NumMethods, VMPerm, RegretSum);
+        for (i = 0; i < NumMethods; i++)
+        {
+            r = VMPerm[i];
+            printf("%d=", r);
+            PrintMethName(r, TRUE);
+            printf("\t %g\n", RegretSum[r]);
         }
 
-    printf("\n3. voting methods sorted via Schulze beatpaths ordering (best first):\n");
-    fflush(stdout);
-    for (i = NumMethods - 1; i >= 0; i--)
-    {
-        for (j = NumMethods - 1; j >= 0; j--)
-            BPStrength[i * NumMethods + j] = 0;
-    }
-    for (r = 0; r < (int)ScenarioCount; r++)
-    {
-        k = r * NumMethods;
+        printf("\n2. in order of elimination by the Coombs method (worst first):\n");
+        fflush(stdout);
+        for (i = NumMethods - 1; i >= 0; i--)
+        {
+            CoombElim[i] = FALSE;
+        }
+        for (coombrd = NumMethods - 2; coombrd >= 0; coombrd--)
+        {
+            for (i = NumMethods - 1; i >= 0; i--)
+            {
+                CoombCt[i] = 0;
+            }
+            for (j = 0; j < (int)ScenarioCount; j++)
+            {
+                k = -1;
+                r = j * NumMethods;
+                maxc = -HUGE;
+                for (i = 0; i < NumMethods; i++)
+                    if (!CoombElim[i])
+                    {
+                        if (RegretData[r + i] >= maxc)
+                        {
+                            maxc = RegretData[r + i];
+                            k = i;
+                        }
+                    }
+                assert(k >= 0);
+                CoombCt[k]++;
+            }
+            k = -1;
+            j = -1;
+            for (i = 0; i < NumMethods; i++)
+            {
+                if (CoombCt[i] > k)
+                {
+                    k = CoombCt[i];
+                    j = i;
+                }
+            }
+            assert(j >= 0);
+            assert(!CoombElim[j]);
+            CoombElim[j] = TRUE;
+            printf("%d=", j);
+            PrintMethName(j, TRUE);
+            printf("\n");
+            fflush(stdout);
+        }
+        for (i = 0; i < NumMethods; i++)
+            if (!CoombElim[i])
+            {
+                printf("Coombs Winner: %d=", i);
+                PrintMethName(i, TRUE);
+                printf("\n");
+                fflush(stdout);
+                break;
+            }
+
+        printf("\n3. voting methods sorted via Schulze beatpaths ordering (best first):\n");
+        fflush(stdout);
+        for (i = NumMethods - 1; i >= 0; i--)
+        {
+            for (j = NumMethods - 1; j >= 0; j--)
+                BPStrength[i * NumMethods + j] = 0;
+        }
+        for (r = 0; r < (int)ScenarioCount; r++)
+        {
+            k = r * NumMethods;
+            for (i = NumMethods - 1; i >= 0; i--)
+            {
+                for (j = NumMethods - 1; j >= 0; j--)
+                    if (i != j)
+                    {
+                        BPStrength[i * NumMethods + j] += (RegretData[k + i] < RegretData[k + j]) ? 1 : -1;
+                    }
+            }
+        }
+
         for (i = NumMethods - 1; i >= 0; i--)
         {
             for (j = NumMethods - 1; j >= 0; j--)
                 if (i != j)
                 {
-                    BPStrength[i * NumMethods + j] += (RegretData[k + i] < RegretData[k + j]) ? 1 : -1;
+                    for (k = 0; k < NumMethods; k++)
+                        if (k != j && k != i)
+                        {
+                            minc = (int)(BPStrength[j * NumMethods + i]);
+                            if (BPStrength[i * NumMethods + k] < minc)
+                                minc = (int)BPStrength[i * NumMethods + k];
+                            if (BPStrength[j * NumMethods + k] < minc)
+                                BPStrength[j * NumMethods + k] = minc;
+                        }
                 }
         }
-    }
 
-    for (i = NumMethods - 1; i >= 0; i--)
-    {
-        for (j = NumMethods - 1; j >= 0; j--)
-            if (i != j)
-            {
-                for (k = 0; k < NumMethods; k++)
-                    if (k != j && k != i)
-                    {
-                        minc = (int)(BPStrength[j * NumMethods + i]);
-                        if (BPStrength[i * NumMethods + k] < minc)
-                            minc = (int)BPStrength[i * NumMethods + k];
-                        if (BPStrength[j * NumMethods + k] < minc)
-                            BPStrength[j * NumMethods + k] = minc;
-                    }
-            }
-    }
-
-    for (i = 0; i < NumMethods; i++)
-    {
-        for (j = i + 1; j < NumMethods; j++)
+        for (i = 0; i < NumMethods; i++)
         {
-            if (BPStrength[MethPerm[j] * NumMethods + MethPerm[i]] >
-                BPStrength[MethPerm[i] * NumMethods + MethPerm[j]])
+            for (j = i + 1; j < NumMethods; j++)
             {
-                /*i is not as good as j, so swap:*/
-                r = MethPerm[i];
-                MethPerm[i] = MethPerm[j];
-                MethPerm[j] = r;
+                if (BPStrength[MethPerm[j] * NumMethods + MethPerm[i]] >
+                    BPStrength[MethPerm[i] * NumMethods + MethPerm[j]])
+                {
+                    /*i is not as good as j, so swap:*/
+                    r = MethPerm[i];
+                    MethPerm[i] = MethPerm[j];
+                    MethPerm[j] = r;
+                }
             }
+            printf("%d=", MethPerm[i]);
+            PrintMethName(MethPerm[i], TRUE);
+            printf("\n");
+            fflush(stdout);
         }
-        printf("%d=", MethPerm[i]);
-        PrintMethName(MethPerm[i], TRUE);
-        printf("\n");
+        printf("==========end of summary============\n");
         fflush(stdout);
+#ifdef DO_MPI
     }
-    printf("==========end of summary============\n");
-    fflush(stdout);
+#endif
 }
 
 /* Like BRDriver only based on the real world election dataset: */
@@ -7674,9 +7776,9 @@ void RWBRDriver(uint BROutputMode)
     real scalefac, reb, maxc;
     brdata B; // FIXME malloc brdata WGA
 
-    for (iglevel = 0; iglevel < 4; iglevel++)
+    for (iglevel = 0; iglevel < numIgnLevels; iglevel++)
     {
-        for (whichhonlevel = 0; whichhonlevel < 5; whichhonlevel++)
+        for (whichhonlevel = 0; whichhonlevel < numHonLevels; whichhonlevel++)
         {
             B.Honfrac = HonLevels[whichhonlevel];
             if (B.Honfrac * 100 < honfracupper + 0.0001 &&
@@ -7989,10 +8091,17 @@ time_t sim_start;
 int cloneAndRedirectTo(char *file_name)
 {
     char errmsg[100];
-    char file_out[100];
-    char file_err[100];
-    strcat(strcpy(file_out, file_name), ".out");
-    strcat(strcpy(file_err, file_name), ".err");
+    char file_out[200];
+    char file_err[200];
+    char file_thread_name[100];
+    strcpy(file_thread_name, file_name);
+#ifdef DO_MPI
+    char tmp[100];
+    sprintf(tmp, "thread%i", my_id);
+    strcat(file_thread_name, tmp);
+#endif
+    strcat(strcpy(file_out, file_thread_name), ".out");
+    strcat(strcpy(file_err, file_thread_name), ".err");
 
     tout = open(file_out, O_RDWR | O_CREAT, 0600);
     if (tout == -1)
@@ -8067,14 +8176,29 @@ int main(int argc, char *argv[])
     char outfilename[100];
     brdata B;
     uint BROutputMode = 0;
-
     fname[0] = '\0';
     outfilename[0] = '\0';
+
+#ifdef DO_MPI
+    int master_thread = 0;
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+    MPI_Comm_size(MPI_COMM_WORLD, &num_threads);
+#endif
+
     ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
-    printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
-    printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);
-    fflush(stdout);
-    PrintConsts();
+#ifdef DO_MPI
+    if (my_id == master_thread)
+    {
+#endif
+        printf("IEVS (Warren D. Smith's infinitely extendible voting system comparator) at your service!\n");
+        printf("Version=%f  Year=%d  Month=%d\n", VERSION, VERSIONYEAR, VERSIONMONTH);
+        PrintConsts();
+        fflush(stdout);
+#ifdef DO_MPI
+        printf("\nMPI run with %d threads.\n\n", num_threads);
+    }
+#endif
 
 #ifdef INCLUDE_INI_FILE
     if (argc == 2)
@@ -8084,18 +8208,25 @@ int main(int argc, char *argv[])
         //printf("sizeof config*: %ld\n", sizeof(config));
         if ((unsigned long long)config == 1)
             return 1;
-        /* else set variables and execute */
-        printf("[-0-0-0-0-\n");
-        printf("INI_FILE: %s\n", argv[1]);
-        printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
-        printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
-        printf("candnum lower: %d, upper: %d\n", config->candnumlower, config->candnumupper);
-        printf("votnum lower: %d, upper: %d\n", config->votnumlower, config->votnumupper);
-        printf("utilnum lower: %d, upper: %d\n", config->utilnumlower, config->utilnumupper);
-        printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
-        printf("Operation/Section: %d\n", config->operation);
-        printf("BROutputMode: 0x%X\n", config->BROutputMode);
-        printf("-0-0-0-0-]\n");
+            /* else set variables and execute */
+#ifdef DO_MPI
+        if (my_id == master_thread)
+        {
+#endif
+            printf("[-0-0-0-0-\n");
+            printf("INI_FILE: %s\n", argv[1]);
+            printf("seed: %d, outputfile: %s\n", config->seed, config->outputfile);
+            printf("honfrac lower: %d, upper: %d\n", config->honfraclower, config->honfracupper);
+            printf("candnum lower: %d, upper: %d\n", config->candnumlower, config->candnumupper);
+            printf("votnum lower: %d, upper: %d\n", config->votnumlower, config->votnumupper);
+            printf("utilnum lower: %d, upper: %d\n", config->utilnumlower, config->utilnumupper);
+            printf("numelections2try: %d, real_world_utils: %d\n", config->numelections2try, config->real_world_based_utilities);
+            printf("Operation/Section: %d\n", config->operation);
+            printf("BROutputMode: 0x%X\n", config->BROutputMode);
+            printf("-0-0-0-0-]\n");
+#ifdef DO_MPI
+        }
+#endif
 
         seed = config->seed; //0 causes machine to auto-generate from TimeOfDay
         InitRand(seed);
@@ -8134,11 +8265,13 @@ int main(int argc, char *argv[])
             }
             if (config->utilnumlower >= 0)
             {
-                utilnumlower = config->utilnumlower;
+                if (config->utilnumlower <= NumUtilGens)
+                    utilnumlower = config->utilnumlower;
             }
             if (config->utilnumupper >= 0)
             {
-                utilnumupper = config->utilnumupper;
+                if (config->utilnumlower <= NumUtilGens)
+                    utilnumupper = config->utilnumupper;
             }
             if (config->numelections2try >= 0)
             {
@@ -8187,6 +8320,9 @@ int main(int argc, char *argv[])
             printf("Tally an election with votes you enter (NOT IMPLEMENTED HERE - try\n");
             printf("http://RangeVoting.org/VoteCalc.html)\n");
         }
+#ifdef DO_MPI
+        MPI_Finalize();
+#endif
         return 0;
     }
 #endif
@@ -8457,8 +8593,8 @@ int main(int argc, char *argv[])
                         scanf("%d %d", &utilnumlower, &utilnumupper);
                         if (utilnumlower < 0)
                             utilnumlower = 0;
-                        if (utilnumupper >= 15) //FIXME WGA NumUtilGens? should replace '15' it is currently defined as '11'!!!
-                            utilnumupper = 15;
+                        if (utilnumupper >= NumUtilGens)
+                            utilnumupper = NumUtilGens;
                         printf("Utility gens  [%d, %d] chosen.\n", utilnumlower, utilnumupper);
                         /**** if ??? 
 	    printf("Select LPpow???d):\n");
@@ -8682,8 +8818,10 @@ int main(int argc, char *argv[])
     } while (FALSE); /* end switch */
 
     printf("countmallocs: %d, countfrees: %d\n", countmallocs, countfrees); //WGA
-
     fflush(stdout);
+#ifdef DO_MPI
+    MPI_Finalize();
+#endif
     exit(EXIT_SUCCESS);
 }
 

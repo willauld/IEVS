@@ -8,8 +8,10 @@
             "name": "gcc.exe - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}\\ievs_ini.exe",
-            "args": [ "test02ini.ini" ],
+            "program": "${fileDirname}\\ievs_omp.exe",
+            "args": [
+                "test03ini.ini"
+            ],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
