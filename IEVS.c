@@ -22,6 +22,7 @@
 #include <time.h>
 #define NO_OLDNAMES
 #include <math.h>
+#include <float.h>
 #include <stdint.h>
 #include <assert.h>
 #include <ctype.h>
@@ -171,8 +172,6 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define uchar unsigned char
 #define schar signed char
 #define real double
-
-#define HUGE HUGE_VAL /* Adding bridge macro to math.h macro WGA */
 
 #define PI 3.14159265358979323844
 
@@ -724,8 +723,8 @@ void TestRand01()
     real x, s, mx, mn, v;
     s = 0.0;
     v = 0.0;
-    mn = HUGE;
-    mx = -HUGE;
+    mn = FLT_MAX;
+    mx = -FLT_MAX;
     for (i = 0; i < 10; i++)
         ct[i] = 0;
     printf("Performing 100000 randgen calls to test that randgen[0,1] behaving ok:\n");
@@ -774,8 +773,8 @@ void TestRandExpl()
     real x, s, mx, mn, v;
     s = 0.0;
     v = 0.0;
-    mn = HUGE;
-    mx = -HUGE;
+    mn = FLT_MAX;
+    mx = -FLT_MAX;
     for (i = 0; i < 10; i++)
         ct[i] = 0;
     printf("Performing 100000 randgen calls to test that expl randgen behaving ok:\n");
@@ -830,8 +829,8 @@ void TestNormalRand()
     real x, s, mx, mn, v;
     s = 0.0;
     v = 0.0;
-    mn = HUGE;
-    mx = -HUGE;
+    mn = FLT_MAX;
+    mx = -FLT_MAX;
     for (i = 0; i < 10; i++)
         ct[i] = 0;
     printf("Performing 100000 randgen calls to test that normal randgen behaving ok:\n");
@@ -878,8 +877,8 @@ void TestRadialNormalRand()
     real x, s, mx, mn, v;
     s = 0.0;
     v = 0.0;
-    mn = HUGE;
-    mx = -HUGE;
+    mn = FLT_MAX;
+    mx = -FLT_MAX;
     for (i = 0; i < 10; i++)
         ct[i] = 0;
     printf("Performing 100000 randgen calls to test that radial normal randgen behaving ok:\n");
@@ -911,8 +910,8 @@ void TestRadialNormalRand2()
     real x, s, mx, mn, v, w;
     s = 0.0;
     v = 0.0;
-    mn = HUGE;
-    mx = -HUGE;
+    mn = FLT_MAX;
+    mx = -FLT_MAX;
     for (i = 0; i < 10; i++)
         ct[i] = 0;
     printf("Performing 100000 randgen calls to test that normal randgen behaving ok radially:\n");
@@ -1389,7 +1388,7 @@ int ArgMinRealArr(uint N, real Arr[], int RandPerm[])
     real minc;
     int i, r, winner;
     winner = -1;
-    minc = HUGE;
+    minc = FLT_MAX;
     RandomlyPermute(N, (uint *)RandPerm);
     for (i = 0; i < (int)N; i++)
     {
@@ -1410,7 +1409,7 @@ int ArgMaxRealArr(uint N, real Arr[], int RandPerm[])
     real maxc;
     int i, r, winner;
     winner = -1;
-    maxc = -HUGE;
+    maxc = -FLT_MAX;
     RandomlyPermute(N, (uint *)RandPerm);
     for (i = 0; i < (int)N; i++)
     {
@@ -1493,7 +1492,7 @@ int Arg2MaxRealArr(uint N, real Arr[], int RandPerm[], int MaxInd)
     real maxc;
     int i, r, winner;
     winner = -1;
-    maxc = -HUGE;
+    maxc = -FLT_MAX;
     for (i = 0; i < (int)N; i++)
     {
         r = RandPerm[i];
@@ -2578,7 +2577,7 @@ EMETH Hay(edata *E /*Strategyproof. Prob of election proportional to sum of sqrt
     for (i = 0; i < (int)E->NumVoters; i++)
     {
         x = i * E->NumCands;
-        minu = HUGE;
+        minu = FLT_MAX;
         for (j = E->NumCands - 1; j >= 0; j--)
         {
             if (minu > E->Utility[x + j])
@@ -3073,8 +3072,8 @@ EMETH Sinkhorn(edata *E /* candidate with max Sinkhorn rating (from all-positive
                     SinkRow[k] * SinkCol[j] * (E->DefeatsMatrix[k * E->NumCands + j] + 1.0);
             }
         }
-        maxsum = -HUGE;
-        minsum = HUGE;
+        maxsum = -FLT_MAX;
+        minsum = FLT_MAX;
         for (k = 0; k < (int)E->NumCands; k++)
         {
             sum = 0.0;
@@ -3089,8 +3088,8 @@ EMETH Sinkhorn(edata *E /* candidate with max Sinkhorn rating (from all-positive
             SinkRow[k] /= sum;
         }
         maxminRatio = maxsum / minsum;
-        maxsum = -HUGE;
-        minsum = HUGE;
+        maxsum = -FLT_MAX;
+        minsum = FLT_MAX;
         for (k = 0; k < (int)E->NumCands; k++)
         {
             sum = 0.0;
@@ -4230,7 +4229,7 @@ EMETH IRNR(edata *E /*Brian Olson's voting method described above*/
         }
         RandomlyPermute(E->NumCands, RandCandPerm);
         loser = -1;
-        minc = HUGE;
+        minc = FLT_MAX;
         for (j = E->NumCands - 1; j >= 0; j--)
         {
             r = RandCandPerm[j];
@@ -4301,7 +4300,7 @@ EMETH IRNRv(edata *E /*Brian Olson's voting method but with 2-param renorm*/
         }
         RandomlyPermute(E->NumCands, RandCandPerm);
         loser = -1;
-        minc = HUGE;
+        minc = FLT_MAX;
         for (j = E->NumCands - 1; j >= 0; j--)
         {
             r = RandCandPerm[j];
@@ -4343,8 +4342,8 @@ EMETH IRNRm(edata *E /*Brian Olson's voting method but with 2-param renorm*/
         for (i = 0; i < (int)E->NumVoters; i++)
         {
             x = i * E->NumCands;
-            mx = -HUGE;
-            mn = HUGE;
+            mx = -FLT_MAX;
+            mn = FLT_MAX;
             for (j = E->NumCands - 1; j >= 0; j--)
                 if (!Eliminated[j])
                 {
@@ -4367,7 +4366,7 @@ EMETH IRNRm(edata *E /*Brian Olson's voting method but with 2-param renorm*/
         }
         RandomlyPermute(E->NumCands, RandCandPerm);
         loser = -1;
-        minc = HUGE;
+        minc = FLT_MAX;
         for (j = E->NumCands - 1; j >= 0; j--)
         {
             r = RandCandPerm[j];
@@ -5269,7 +5268,7 @@ EMETH CondOpt(edata *E /*elects "magic best" (greatest summed utility) SmithSet 
 )
 { /*WDS: untested 29 April 2021*/
     int i, j, winner;
-    real u, maxu = -HUGE;
+    real u, maxu = -FLT_MAX;
     if (CopeWinOnlyWinner < 0)
         BuildDefeatsMatrix(E);
     if (CWSPEEDUP && CondorcetWinner >= 0)
@@ -5299,7 +5298,7 @@ EMETH CondWorst(edata *E /*elects "magic worst" (least summed utility) SmithSet 
 )
 { /*WDS: untested 29 April 2021*/
     int i, j, winner;
-    real u, minu = HUGE;
+    real u, minu = FLT_MAX;
     if (CopeWinOnlyWinner < 0)
         BuildDefeatsMatrix(E);
     if (CWSPEEDUP && CondorcetWinner >= 0)
@@ -5658,8 +5657,8 @@ void HonestyStrat(edata *E, real honfrac)
             MakeIdentityPerm(E->NumCands, E->TopDownPrefs + offset);
             RealPermShellSortDown(E->NumCands, (int *)E->TopDownPrefs + offset, E->PerceivedUtility + offset);
             assert(IsPerm(E->NumCands, E->TopDownPrefs + offset));
-            MaxUtil = -HUGE;
-            MinUtil = HUGE;
+            MaxUtil = -FLT_MAX;
+            MinUtil = FLT_MAX;
             SumU = 0.0;
             for (i = E->NumCands - 1; i >= 0; i--)
             {
@@ -7662,7 +7661,7 @@ void BRDriver(uint BROutputMode)
             {
                 k = -1;
                 r = j * NumMethods;
-                maxc = -HUGE;
+                maxc = -FLT_MAX;
                 for (i = 0; i < NumMethods; i++)
                     if (!CoombElim[i])
                     {
@@ -7984,7 +7983,7 @@ void RWBRDriver(uint BROutputMode)
         {
             k = -1;
             r = j * NumMethods;
-            maxc = -HUGE;
+            maxc = -FLT_MAX;
             for (i = 0; i < NumMethods; i++)
                 if (!CoombElim[i])
                 {
