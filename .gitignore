@@ -58,3 +58,6 @@ dkms.conf
 # simulation output files
 *.out
 *.err
+
+# sprng2.0 library files
+sprng2.0/
