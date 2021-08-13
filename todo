@@ -1,6 +1,6 @@
 - add run parameters as part of the output in the .out file
 - try some types of concurancy to improve performance
-- in BRdriver() change utility loop to use input parameters assuming these parameters have been checked for being within bounds previously
+x in BRdriver() change utility loop to use input parameters assuming these parameters have been checked for being within bounds previously
 - make it so .ini file can have all definitions (no commented out) but only execute the do = new section
 - Work on performance through concurancy / parallism
   - Prerequisite
