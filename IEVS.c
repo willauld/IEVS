@@ -184,7 +184,7 @@ David Cary's Changes (not listing ones WDS did anyhow) include:
 #define NumFastMethods ((uint)sizeof(methodsVector) / 16)
 #define NumMethods (NumFastMethods + NumSlowMethods)
 
-#define NumUtilGens 15 //was 11 WGA /*UTGEN the # in this line needs to change if add new util gen*/
+#define NumUtilGens 15 /*UTGEN the # in this line needs to change if add new util gen*/
 #define NumCoreMethods 12
 #define CWSPEEDUP FALSE /* TRUE causes it to be faster, but FALSE better for diagnosing bugs */
 
@@ -345,6 +345,23 @@ void PrintNSpaces(int N)
 int num_threads;
 int my_id;
 #endif
+
+#ifdef DO_MPI_SPRNG
+int streamnum, nstreams; // for SPRNG
+#define SIMPLE_SPRNG     /* simple interface                        */
+#define USE_MPI
+#include "./sprng2.0/include/sprng.h"
+#define DONT_DEFINE_RAND01
+#define Rand01 sprng
+#endif
+
+#ifdef DO_S_SPRNG
+#define SIMPLE_SPRNG /* simple interface                        */
+#include "./sprng2.0/include/sprng.h"
+#define DONT_DEFINE_RAND01
+#define Rand01 sprng
+#endif
+
 uint32 BLC32x[60]; /* 32*60=1920 bits of state. Must be nonzero mod P. */
 int BLC32NumLeft;
 
@@ -395,7 +412,7 @@ uint32 BigLinCong32()
     uint64 u;
     uint32 rval;
 
-#ifdef DO_MPI
+#ifdef DO_MPI_RAND
     if (BLC32NumLeft < num_threads)
 #else
     if (BLC32NumLeft == 0)
@@ -570,14 +587,14 @@ uint32 BigLinCong32()
             BLC32x[i] = y[i];
         }
         /*printf("%u\n", BLC32x[44]);*/
-#ifdef DO_MPI
+#ifdef DO_MPI_RAND
         BLC32NumLeft = 60 + my_id;
 #else
         BLC32NumLeft = 60;
 #endif
     }
     /* (Else) We have random numbers left, so return one: */
-#ifdef DO_MPI
+#ifdef DO_MPI_RAND
     BLC32NumLeft -= num_threads;
 #else
     BLC32NumLeft--;
@@ -662,10 +679,12 @@ uint32 RandUint()
     return BigLinCong32();
 }
 
+#ifndef DONT_DEFINE_RAND01
 real Rand01()
 { /* returns random uniform in [0,1] */
     return ((BigLinCong32() + 0.5) / (1.0 + MAXUINT) + BigLinCong32()) / (1.0 + MAXUINT);
 }
+#endif
 
 void InitRand(uint seed)
 { /* initializes the randgen */
@@ -1296,6 +1315,13 @@ void FillBoolArray(uint N, bool Arr[], bool Filler)
 }
 
 void FillRealArray(uint N, real Arr[], real Filler)
+{ /* sets Arr[0..N-1] = Filler */
+    int i;
+    for (i = N - 1; i >= 0; i--)
+        Arr[i] = Filler;
+}
+
+void FillUIntArray(uint N, uint Arr[], uint Filler)
 { /* sets Arr[0..N-1] = Filler */
     int i;
     for (i = N - 1; i >= 0; i--)
@@ -2296,6 +2322,83 @@ uint WoodHashCount[3 * MaxNumCands * MaxNumVoters], WoodHashSet[3 * MaxNumCands 
 uint WoodSetPerm[3 * MaxNumCands * MaxNumVoters];
 uint IBeat[MaxNumCands];
 
+void init_globals()
+{
+    FillUIntArray(MaxNumCands, PlurVoteCount, 0);
+    FillUIntArray(MaxNumCands, AntiPlurVoteCount, 0);
+    FillUIntArray(MaxNumCands, DabaghVoteCount, 0);
+    FillIntArray(MaxNumCands * MaxNumCands, StarNdefMatrix, 0);
+    FillUIntArray(MaxNumCands, StarNVoteCount, 0);
+    FillIntArray(MaxNumCands, VFAVoteCount, 0);
+    FillIntArray(MaxNumCands, RdVoteCount, 0);
+    FillIntArray(MaxNumVoters, FavListNext, 0);
+    FillIntArray(MaxNumCands, HeadFav, 0);
+    FillIntArray(MaxNumCands, WinCount, 0);
+    FillIntArray(MaxNumCands, DrawCt, 0);
+    FillIntArray(MaxNumCands, CopeScore, 0);
+    FillIntArray(MaxNumCands, LossCount, 0);
+    FillIntArray(MaxNumCands, SimmVotesAgainst, 0);
+    FillIntArray(MaxNumCands * MaxNumCands, BeatPathStrength, 0);
+    FillRealArray(MaxNumCands * MaxNumCands, ArmyBPS, 0.0);
+    FillUIntArray(MaxNumCands, ApprovalVoteCount, 0);
+    FillIntArray(MaxNumCands, UncAAOF, 0);
+    FillUIntArray(MaxNumCands, MCAVoteCount, 0);
+    FillRealArray(MaxNumCands, RangeVoteCount, 0.0);
+    FillRealArray(MaxNumCands, SumNormedRating, 0.0);
+    FillUIntArray(MaxNumCands, RangeNVoteCount, 0);
+
+    FillRealArray(MaxNumCands, CCumVoteCount, 0.0);
+    FillRealArray(MaxNumCands, MedianRating, 0.0);
+    FillRealArray(MaxNumVoters, CScoreVec, 0.0);
+    FillIntArray(MaxNumCands, MedianRank, 0);
+    FillIntArray(MaxNumVoters, CRankVec, 0);
+    FillUIntArray(MaxNumCands, BordaVoteCount, 0);
+    FillIntArray(MaxNumCands, NansonVoteCount, 0);
+    FillUIntArray(MaxNumCands, NauruVoteCount, 0);
+    FillUIntArray(MaxNumCands, HeismanVoteCount, 0);
+    FillUIntArray(MaxNumCands, BaseballVoteCount, 0);
+    FillUIntArray(MaxNumCands, SumOfDefeatMargins, 0);
+    FillIntArray(MaxNumCands, WorstDefeatMargin, 0);
+    FillIntArray(MaxNumCands, SSworstDefeatMargin, 0);
+    FillIntArray(MaxNumCands, RayDefeatMargin, 0);
+    FillIntArray(MaxNumCands, RayBeater, 0);
+    FillIntArray(MaxNumCands, ARVictMargin, 0);
+    FillIntArray(MaxNumCands, ARchump, 0);
+    FillRealArray(MaxNumCands, UtilitySum, 0.0);
+    FillRealArray(MaxNumCands, UtilityRootSum, 0.0);
+    FillUIntArray(MaxNumCands, RandCandPerm, 0); //wga think this is not needed
+    /*
+    bool MajApproved[MaxNumCands];
+    bool Eliminated[MaxNumCands];
+    bool MDdisquald[MaxNumCands];
+    bool BSSmithMembs[MaxNumCands];
+    bool SmithMembs[MaxNumCands];
+    bool UncoveredSt[MaxNumCands];
+    bool SchwartzMembs[MaxNumCands];
+    */
+    FillIntArray(MaxNumVoters, IFav, 0);
+    FillUIntArray(MaxNumCands, NauruWt, 0);
+    FillUIntArray(MaxNumCands, BaseballWt, 0);
+    FillIntArray(MaxNumCands * MaxNumCands, PairApproval, 0);
+    FillRealArray(MaxNumCands, SinkRat, 0.0);
+    FillRealArray(MaxNumCands, SinkRow, 0.0);
+    FillRealArray(MaxNumCands, SinkCol, 0.0);
+    FillRealArray(MaxNumCands * MaxNumCands, SinkMat, 0.0);
+    //bool CoverMatrix[MaxNumCands * MaxNumCands];
+    FillRealArray(MaxNumCands, EigVec, 0.0);
+    FillRealArray(MaxNumCands, EigVec2, 0.0);
+    //bool Rmark[MaxNumCands];
+    //bool rRmark[MaxNumCands];
+    FillIntArray(MaxNumCands, summ, 0);
+    FillIntArray(MaxNumCands * MaxNumCands, Tpath, 0);
+    FillIntArray(MaxNumCands, Hpotpar, 0);
+    FillIntArray(MaxNumCands, Hpar, 0);
+    FillIntArray(MaxNumCands, Hroot, 0);
+    FillUIntArray(3 * MaxNumCands * MaxNumVoters, WoodHashCount, 0);
+    FillUIntArray(3 * MaxNumCands * MaxNumVoters, WoodHashSet, 0);
+    FillUIntArray(3 * MaxNumCands * MaxNumVoters, WoodSetPerm, 0);
+    FillUIntArray(MaxNumCands, IBeat, 0);
+}
 void InitCoreElState()
 { /*can use these flags to tell if Plurality() etc have been run*/
     PlurWinner = -1;
@@ -6393,7 +6496,6 @@ void ComputeBRs(brdata *B, bool VotMethods[], int UtilMeth)
     ZeroRealArray(NumMethods, B->SRegret);
     ZeroIntArray(NumMethods, (int *)B->RegCount);
     ZeroIntArray(NumMethods * NumMethods, (int *)B->AgreeCount);
-    //ZeroIntArray(NumMethods * NumMethods, (int *)B->AgreeCount); // repeated line DELETEME
     ZeroIntArray(NumMethods, (int *)B->CondAgreeCount);
     ZeroIntArray(NumMethods, (int *)B->TrueCondAgreeCount);
     InitCoreElState();
@@ -7393,6 +7495,7 @@ void BRDriver(uint BROutputMode)
             itrcount++;
             if (itrcount >= start && itrcount < end)
             {
+                //init_globals();//WGA not needed
 #endif
                 for (whichhonlevel = 0; whichhonlevel < numHonLevels; whichhonlevel++)
                 {
@@ -7413,6 +7516,9 @@ void BRDriver(uint BROutputMode)
                                     FillBoolArray(NumMethods, VotMethods, TRUE); /*might want to only do a subset... ??*/
                                     printf("\n");
                                     fflush(stdout);
+#ifdef DO_MPI
+                                    printf("Thread%d", my_id);
+#endif
                                     printf("(Scenario#%d:", ScenarioCount);
                                     printf(" UtilMeth=");
                                     PrintUtilName(UtilMeth, FALSE);
@@ -7457,6 +7563,7 @@ void BRDriver(uint BROutputMode)
                                         else if (BROutputMode & TEXMODE)
                                             printf(" & ");
                                         if (BROutputMode & NORMALIZEREGRETS)
+                                            //WGA MeanRegret[2] is for RandomWinner
                                             printf(" \t %8.5g", B.MeanRegret[r] / B.MeanRegret[2]);
                                         else if (BROutputMode & SHENTRUPVSR)
                                             printf(" \t %8.5g", 100.0 * (1.0 - B.MeanRegret[r] / B.MeanRegret[2]));
@@ -7576,8 +7683,8 @@ void BRDriver(uint BROutputMode)
     {
         // non-master thread send its results to master
         int elements_to_send = ScenarioCount * NumMethods;
-        printf("thread: %d, sending ScenarioCount: %d elements_to_send: %d\n",
-               my_id, ScenarioCount, elements_to_send);
+        printf("thread: %d, sending ScenarioCount: %d elements_to_send: %d for NumMethods: %d\n",
+               my_id, ScenarioCount, elements_to_send, NumMethods);
 
         MPI_Send(&ScenarioCount, 1, MPI_INT,
                  master_thread, send_data_tag, MPI_COMM_WORLD);
@@ -7585,7 +7692,7 @@ void BRDriver(uint BROutputMode)
         MPI_Send(&elements_to_send, 1, MPI_INT,
                  master_thread, send_data_tag, MPI_COMM_WORLD);
 
-        MPI_Send(&RegretData[0], elements_to_send, MPI_INT,
+        MPI_Send(&RegretData[0], elements_to_send, MPI_DOUBLE,
                  master_thread, send_data_tag, MPI_COMM_WORLD);
     }
     else
@@ -7596,6 +7703,7 @@ void BRDriver(uint BROutputMode)
         int master_elements = ScenarioCount * NumMethods;
         int deposit_start = master_elements;
         printf("master_thread, ScenarioCount: %d master_elements: %d\n", ScenarioCount, master_elements);
+
         for (int i = 1; i < num_threads; i++)
         {
             MPI_Recv(&partial_scenario_count, 1, MPI_INT,
@@ -7606,7 +7714,7 @@ void BRDriver(uint BROutputMode)
                      i, send_data_tag, MPI_COMM_WORLD, &status);
 
             MPI_Recv(&RegretData[deposit_start], elements_to_receive,
-                     MPI_INT, i, send_data_tag, MPI_COMM_WORLD, &status);
+                     MPI_DOUBLE, i, send_data_tag, MPI_COMM_WORLD, &status);
             deposit_start += elements_to_receive;
 
             printf("master_thread receiving from thread: %d, par_scenario_count: %d elements_to_recieve: %d\n", i, partial_scenario_count, elements_to_receive);
@@ -8096,7 +8204,7 @@ int cloneAndRedirectTo(char *file_name)
     strcpy(file_thread_name, file_name);
 #ifdef DO_MPI
     char tmp[100];
-    sprintf(tmp, "thread%i", my_id);
+    sprintf(tmp, "%dthread%i", num_threads, my_id);
     strcat(file_thread_name, tmp);
 #endif
     strcat(strcpy(file_out, file_thread_name), ".out");
@@ -8163,9 +8271,6 @@ void restoreRedirectedIO()
 
 int main(int argc, char *argv[])
 {
-    // WGA PrintConsts(); //return;
-    //assert(MAXUINT == ((uint)((255 << 48) | (255 << 40) | (255 << 32) | (255 << 24) | (255 << 16) | (255 << 8) | (255))));
-
     uint seed, choice, ch2, ch3;
     int ihonfrac, TopYeeVoters, GaussStdDev, subsqsideX, subsqsideY, LpPow;
     int WhichMeth, NumSites, i, j;
@@ -8183,6 +8288,15 @@ int main(int argc, char *argv[])
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
     MPI_Comm_size(MPI_COMM_WORLD, &num_threads);
+#ifdef DO_MPI_SPRNG
+    streamnum = my_id;
+    nstreams = num_threads; /* one stream per processor                */
+    int gtype = 2;          /*---lgc64    */
+
+    MPI_Bcast(&gtype, 1, MPI_INT, 0, MPI_COMM_WORLD);
+#define SEED 985456376
+    init_sprng(gtype, SEED, SPRNG_DEFAULT); /* initialize stream        */
+#endif
 #endif
 
     ARTINPRIME = FindArtinPrime(MaxNumCands * 3 * MaxNumVoters);
@@ -8196,6 +8310,11 @@ int main(int argc, char *argv[])
         fflush(stdout);
 #ifdef DO_MPI
         printf("\nMPI run with %d threads.\n\n", num_threads);
+#ifdef DO_MPI_SPRNG
+        printf("\n\nProcess %d, print information about stream:\n", my_id);
+        //print_sprng(stream);
+        print_sprng();
+#endif
     }
 #endif
 
@@ -8301,6 +8420,7 @@ int main(int argc, char *argv[])
         }
         else if (config->operation == 2)
         {
+            // not yet implemented in the INI path.
         }
         else if (config->operation == 3)
         {
